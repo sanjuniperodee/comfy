@@ -1,0 +1,63 @@
+*{
+    font-family: 'Rubik', sans-serif;
+}
+body{
+    background-color: white;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 16%;
+    height: 50px;
+    align-items: center;
+}
+.header .adress{
+    align-items: center;
+    font-size: 80%;
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+.header .links{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.header .logo{
+    width: 25%;
+}
+.header .filters{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+}
+.header .filters .catalog{
+    display: flex;
+    justify-content: space-around;
+    background-color: #7FC75B;
+    padding: 2% 2%;
+    border-radius: 10px;
+    width: 20%;
+}
+.header .filters .catalog a{
+    color: white;
+    font-size: 90%;
+}
+.header .filters .search{
+    width: 70%;
+}
+.header .filters .search input{
+    width: 100%; 
+    height:100%;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+.header .icons{
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+}
