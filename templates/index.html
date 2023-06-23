@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 </head>
 <body>
     <header>
@@ -55,22 +55,22 @@
             </div>
         </div>
     </header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 96%; margin-left: 2%; margin-right: 2%; margin-bottom: 200px;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 96%; margin-left: 2%; margin-right: 2%; margin-bottom: 50px;">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" style="height: 600px;">
-          <div class="carousel-item active" style="background: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url({% static 'img/comfy.avif' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center; display: flex; align-items: center;">
+          <div class="carousel-item active" style="background: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url({% static 'img/comfy.avif' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
             <!-- <img class="d-block w-100" src="comfy1.jpg" alt="First slide" width="100%"> -->
-            <div style="margin-left: 20%;;">
-                <h1 style="color: white; margin-bottom: 50px; margin-top: 100px;">Создаем уют в вашем доме</h1>
+            <div style="padding: 20% 0 0% 20%">
+                <h1 style="color: white; margin-bottom: 2%">Создаем уют в вашем доме</h1>
                 <div style="display: flex; gap: 30px;">
                     <div style="color: white; background-color: #7FC75B; align-items: center; border-radius: 10px; width: 200px; display: flex; justify-content: space-around;">
                         <a>Посмотреть Каталог</a>
                     </div>
-                    <div style="color: #7FC75B; border-style: solid; padding: 20px; align-items: center; border-radius: 10px; width: 200px; display: flex; justify-content: space-around; border-color: #7FC75B; border-width: 2px;"> 
+                    <div style="color: #7FC75B; border-style: solid; padding: 20px; align-items: center; border-radius: 10px; width: 200px; display: flex; justify-content: space-around; border-color: #7FC75B; border-width: 2px;">
                         <a>
                             Заказать Звонок
                         </a>
@@ -95,12 +95,55 @@
           <span class="sr-only">Next</span>
         </a>
     </div>
-    
 
 
+    <div class="features">
+        <div>
+            <h2>5000+</h2>
+            <a>Довольных клиентов</a>
+        </div>
+        <div>
+            <h2>100%</h2>
+            <a>Законченных проектов</a>
+        </div>
+        <div>
+            <h2>2000+</h2>
+            <a>Единиц товара</a>
+        </div>
+        <div>
+            <h2>19</h2>
+            <a>Человек в команде</a>
+        </div>
+    </div>
 
+    <div class="sales">
+        <h2>Распродажа</h2>
+        <img src="{% static "img/slider.png" %}">
+    </div>
 
+    <div class="comfy">
+        <div class="block">
+            <div class="first">
+                <a>Доставка по всему Казахстану</a>
+            </div>
+            <div class="second">
+                <a>100% гарантия на год</a>
+            </div>
+        </div>
+        <div class="center">
+            <a>Высокое сертифицированное качество</a>
+        </div>
+        <div class="block">
+            <div class="first">
+                <a>Проекты под ключ</a>
+            </div>
+            <div class="second">
+                <a>Экологичность</a>
+            </div>
+        </div>
+    </div>
 
+    <a href="www.youtube.com"><img src="{% static '/img/sale.jpg' %}" width="80%" style="margin: 0 10% 50px 10%"></a>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
