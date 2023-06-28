@@ -11,7 +11,7 @@ a{
 .header{
     display: flex;
     justify-content: space-between;
-    margin: 20px 16%;
+    margin: 20px 7.5%;
     height: 50px;
     align-items: center;
 }
@@ -19,13 +19,13 @@ a{
     align-items: center;
     font-size: 80%;
     display: flex;
-    justify-content: space-between;
-    width: 25%;
+    gap: 20px;
+    width: 30%;
 }
 .header .links{
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 65%;
 }
 .header .logo{
     width: 25%;
