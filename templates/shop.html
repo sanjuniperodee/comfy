@@ -15,10 +15,12 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css'%}">
 
+      <link rel="stylesheet" href="{% static 'css/price_rangs.css'%}">
 
     <link rel="stylesheet" href="{% static 'css/aos.css'%}">
 
     <link rel="stylesheet" href="{% static 'css/style1.css'%}">
+  <link rel="stylesheet" href="{% static 'css/style2.css'%}">
 
   </head>
   <body>
@@ -210,8 +212,22 @@
             <div class="border p-4 rounded mb-4">
               <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Фильтр по цене</h3>
-                <div id="slider-range" class="border-primary"></div>
-                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+                  <div class="widgets_inner">
+                    <div class="range_item">
+                        <!-- <div id="slider-range"></div> -->
+                        <input type="text" class="js-range-slider" value="" />
+                        <div class="d-flex">
+                            <div class="price_text">
+                                <p>Price :</p>
+                            </div>
+                            <div class="price_value d-flex justify-content-center">
+                                <input type="text" class="js-input-from" id="amount" readonly />
+                                <span>to</span>
+                                <input type="text" class="js-input-to" id="amount" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
               </div>
 
               <div class="mb-4">

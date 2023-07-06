@@ -48,13 +48,13 @@ class Brand(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField(null=True)
+    size = models.FloatField(null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, )
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=True)
     description = models.TextField(null=True)
     image = models.ImageField(null=True)
-    top_rated = models.BooleanField(default=False)
     def __str__(self):
         return self.title
 
