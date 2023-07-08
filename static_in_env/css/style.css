@@ -4,62 +4,27 @@
 body{
     background-color: white;
 }
-a{
-    text-decoration: none;
-    color: black;
-}
 .header{
     display: flex;
     justify-content: space-between;
-    margin: 20px 7.5%;
+    margin: 20px 15%;
     height: 50px;
     align-items: center;
-}
-.header .adress{
-    align-items: center;
-    font-size: 80%;
-    display: flex;
-    gap: 20px;
-    width: 30%;
+
 }
 .header .links{
     display: flex;
     justify-content: space-between;
-    width: 65%;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+}
+.header .links a{
+    color: white;
 }
 .header .logo{
+    display: flex;
     width: 25%;
-}
-.header .filters{
-    width: 45%;
-    display: flex;
-    justify-content: space-between;
-}
-.header .filters .catalog{
-    display: flex;
-    justify-content: space-around;
-    background-color: #7FC75B;
-    padding: 2% 2%;
-    border-radius: 10px;
-    width: 20%;
-}
-.header .filters .catalog a{
-    color: white;
-    font-size: 90%;
-}
-.header .filters .search{
-    width: 70%;
-}
-.header .filters .search input{
-    width: 100%; 
-    height:100%;
-    border-radius: 10px;
-    padding-left: 15px;
-}
-.header .icons{
-    width: 15%;
-    display: flex;
-    justify-content: space-between;
 }
 .features{
     /*width: 100%;*/
@@ -103,7 +68,6 @@ a{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-radius: 10px;
     border-style: solid;
 }
 .comfy .second{
@@ -112,7 +76,6 @@ a{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-radius: 10px;
     border-style: solid;
 }
 .comfy .center{

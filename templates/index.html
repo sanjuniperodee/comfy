@@ -14,22 +14,22 @@
 </head>
 <body>
 {% include 'header.html' %}
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 96%; margin-left: 2%; margin-right: 2%; margin-bottom: 50px;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 100%; margin-bottom: 50px;">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" style="height: 600px;">
-          <div class="carousel-item active" style="background: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)), url({% static 'img/comfy.avif' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <div class="carousel-inner" style="height: 750px;">
+          <div class="carousel-item active" style="background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url({% static 'img/comfy.avif' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
             <!-- <img class="d-block w-100" src="comfy1.jpg" alt="First slide" width="100%"> -->
             <div style="padding: 20% 0 0% 20%">
                 <h1 style="color: white; margin-bottom: 2%">Создаем уют в вашем доме</h1>
                 <div style="display: flex; gap: 30px;">
-                    <div style="color: white; background-color: #7FC75B; align-items: center; border-radius: 10px; width: 200px; display: flex; justify-content: space-around;">
+                    <div style="color: white; background-color: #82BA66; align-items: center; width: 200px; display: flex; justify-content: space-around;">
                         <a>Посмотреть Каталог</a>
                     </div>
-                    <div style="color: #7FC75B; border-style: solid; padding: 20px; align-items: center; border-radius: 10px; width: 200px; display: flex; justify-content: space-around; border-color: #7FC75B; border-width: 2px;">
+                    <div style="color: #82BA66; border-style: solid; padding: 20px; align-items: center; width: 200px; display: flex; justify-content: space-around; border-color: #82BA66; border-width: 2px;">
                         <a>
                             Заказать Звонок
                         </a>
@@ -41,7 +41,7 @@
             <!-- <img class="d-block w-100" src="comfy.avif" alt="Second slide" width="100%"> -->
             123
           </div>
-          <div class="carousel-item" style="background-image: url({% static 'comfy1.jpg'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
+          <div class="carousel-item" style="background-image: url({% static 'img/comfy2.jpg'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
             <a href=""> 123</a>
           </div>
         </div>
@@ -74,13 +74,10 @@
             <a>Человек в команде</a>
         </div>
     </div>
-
-    <div class="sales">
-        <h2>Распродажа</h2>
-        <img src="{% static "img/slider.png" %}">
-    </div>
-
-    <div class="comfy">
+<div style="margin-bottom: 200px">
+    <div style="width:70%; height: 600px; margin-left: 10%; margin-top: 100px; position: absolute; transform: rotate(-15.05deg); transform-origin: 0 0; border-radius: 100%; border: 0.50px rgba(0, 0, 0, 0.20) solid"></div>
+    <div style="width: 1543px; height: 942px; left: 95.86px; top: 184.22px; position: absolute; border-radius: 100%; border: 0.50px rgba(0, 0, 0, 0.20) solid"></div>    <h2 style="width: 100%; text-align: center; margin-top: 175px">Почему Comfy You?</h2>
+    <div class="comfy" >
         <div class="block">
             <div class="first">
                 <a>Доставка по всему Казахстану</a>
@@ -89,18 +86,19 @@
                 <a>100% гарантия на год</a>
             </div>
         </div>
-        <div class="center">
-            <a>Высокое сертифицированное качество</a>
+        <div class="center" style="background-image: url('{% static 'img/center.jpg' %}'); background-size: cover; background-position: center;">
+            <img src="">
         </div>
         <div class="block">
             <div class="first">
-                <a>Проекты под ключ</a>
+                <a>Высокое сертифицированное качество</a>
             </div>
             <div class="second">
                 <a>Экологичность</a>
             </div>
         </div>
     </div>
+</div>
 
     <a href="www.youtube.com"><img src="{% static '/img/sale.jpg' %}" width="80%" style="margin: 0 10% 50px 10%"></a>
 
