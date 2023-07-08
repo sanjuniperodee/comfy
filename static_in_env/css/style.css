@@ -62,21 +62,23 @@ body{
     flex-direction: column;
 }
 .comfy .first{
+    font-size: 15px;
     padding: 0 10px 0 10px;
     text-align: center;
     height: 32%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border-style: solid;
 }
 .comfy .second{
+    font-size: 15px;
     text-align: center;
     height: 62%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border-style: solid;
 }
 .comfy .center{
     width: 31%;
@@ -87,6 +89,4 @@ body{
     justify-content: space-around;
     align-items: center;
     margin-bottom: 10%;
-    border-radius: 10px;
-    border-style: solid;
 }

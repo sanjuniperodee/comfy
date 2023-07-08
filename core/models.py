@@ -47,15 +47,15 @@ class Brand(models.Model):
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
-    price = models.FloatField(null=True)
-    length = models.FloatField(null=True)
-    width = models.FloatField(null=True)
-    diameter = models.FloatField(null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, )
+    price = models.FloatField(null=True, blank=True)
+    length = models.FloatField(null=True, blank=True)
+    width = models.FloatField(null=True, blank=True)
+    diameter = models.FloatField(null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
     slug = models.CharField(max_length=100, null=True)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True)
     def __str__(self):
         return self.title
