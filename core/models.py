@@ -52,7 +52,7 @@ class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, )
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
-    slug = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
     image = models.ImageField(null=True)
     def __str__(self):
