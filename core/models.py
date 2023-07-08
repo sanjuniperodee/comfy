@@ -50,7 +50,7 @@ class Item(models.Model):
     price = models.FloatField(null=True)
     length = models.FloatField(null=True)
     width = models.FloatField(null=True)
-    diametr = models.FloatField(null=True)
+    diameter = models.FloatField(null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, )
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True)
