@@ -65,7 +65,7 @@ body{
     font-size: 15px;
     padding: 0 10px 0 10px;
     text-align: center;
-    height: 32%;
+    height: 47%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -74,7 +74,7 @@ body{
 .comfy .second{
     font-size: 15px;
     text-align: center;
-    height: 62%;
+    height: 47%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
