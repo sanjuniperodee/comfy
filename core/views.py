@@ -1,4 +1,5 @@
 import requests
+from .models import *
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 
@@ -8,4 +9,13 @@ def home(request):
     return render(request, 'index.html')
 
 def shop(request):
-    return render(request, 'shop.html')
+    context = {
+        'items': Item.objects.all()
+    }
+    return render(request, 'shop.html', context)
+
+def detail(request, slug):
+    context = {
+        'item': Item.objects.filter(slug=slug)[0]
+    }
+    return render(request, 'detail.html', context)

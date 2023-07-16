@@ -6,5 +6,6 @@ app_name = 'core'
 
 urlpatterns = [
     path('', home, name='home'),
-    path('shop', shop, name='shop')
+    path('shop', shop, name='shop'),
+    path('detail/<str:slug>', detail, name='detail')
 ]
