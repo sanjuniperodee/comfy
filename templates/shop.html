@@ -73,17 +73,15 @@
             <div class="row mb-5">
             {% for item in items %}
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-              <a href="{% url 'core:detail' item.slug %}">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="{{ item.image.url }}" alt="Image placeholder" class="img-fluid" style="height: 250px"></a>
+                    <a href="{% url 'core:detail' item.slug %}"><img src="{{ item.image.url }}" alt="Image placeholder" class="img-fluid" style="height: 250px"></a>
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">{{ item.title }}</a></h3>
+                    <h3><a href="{% url 'core:detail' item.slug %}">{{ item.title }}</a></h3>
                     <p class="text-primary font-weight-bold">₸{{ item.price }}</p>
                   </div>
                 </div>
-              </a>
               </div>
               {% endfor %}
             </div>

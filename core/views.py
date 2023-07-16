@@ -15,7 +15,9 @@ def shop(request):
     return render(request, 'shop.html', context)
 
 def detail(request, slug):
+    item = Item.objects.filter(slug=slug)[0]
     context = {
-        'item': Item.objects.filter(slug=slug)[0]
+        'item': item,
+        'description1': item.description1.split('\n')
     }
     return render(request, 'detail.html', context)
