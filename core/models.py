@@ -12,9 +12,13 @@ ADDRESS_CHOICES = (
     ('S', 'Shipping'),
 )
 
-
+class Brand(models.Model):
+    title = models.CharField(max_length=15)
+    def __str__(self):
+        return self.title
 class SubCategory(models.Model):
     title = models.CharField(max_length=225)
+    brand = models.ManyToManyField(Brand, default=None)
     def __str__(self):
         return self.title
 
@@ -33,16 +37,6 @@ class UserProfile(models.Model):
     one_click_purchasing = models.BooleanField(default=False)
     image = models.ImageField(default=None)
 
-    # def __str__(self):
-    #     return self.user.username
-
-
-class Brand(models.Model):
-    title = models.CharField(max_length=15)
-    category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE, default=None)
-
-    def __str__(self):
-        return self.title + " " + self.category.title
 
 class Color(models.Model):
     title = models.CharField(max_length=100,null=True, blank=True)
