@@ -31,7 +31,7 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
+          <div class="col-md-12 mb-0"><a href="{% url 'core:home' %}">Главная</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{ category.title }}</strong></div>
         </div>
       </div>
     </div>
@@ -79,8 +79,10 @@
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="{% url 'core:detail' item.slug %}">{{ item.title }}</a></h3>
-                    <p class="text-primary font-weight-bold">₸{{ item.price }}</p>
+                    <p class="text-primary font-weight-bold">₸{{ item.get_price }}</p>
                   </div>
+                    <p><button class="buy-now btn btn-sm btn-primary" id="add_to_card"  value="{{ item.slug }}" type="button" name="{{ item.title }}">Add To Cart</button></p>
+
                 </div>
               </div>
               {% endfor %}
@@ -302,6 +304,35 @@
   <script src="{% static 'js/aos.js'%}"></script>
 
   <script src="{% static 'js/main.js'%}"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
   </body>
+    <script type="text/javascript">
+    const buttons = document.querySelectorAll('button[id="add_to_card"]');
+    console.log(buttons)
+    for(let i = 0; i < buttons.length ; i++) {
+        if(buttons[i].id == 'add_to_card'){
+            console.log(buttons[i]['value'])
+            buttons[i].addEventListener('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "core:add-to-cart1" %}',
+                    data:
+                    {
+                        slug:buttons[i]['value'],
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType:'json',
+                    success:function(){
+                        let p = document.getElementById('number');
+                        console.log(p)
+                        alert("Добавлено в корзину " + buttons[i]['name']);
+                    }
+                })
+            });
+        }
+    }
+</script>
 </html>

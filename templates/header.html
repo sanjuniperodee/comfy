@@ -47,7 +47,7 @@
                   <li><a href="#"><span class="icon icon-person"></span></a></li>
                   <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
-                    <a href="cart.html" class="site-cart">
+                    <a href="{% url 'core:cart' %}" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
                       <span class="count">2</span>
                     </a>
@@ -64,7 +64,7 @@
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li class="has-children active">
-              <a href="index.html">Домащняя страница</a>
+              <a href="index.html">Домашняя страница</a>
               <ul class="dropdown">
                 <li><a href="#">Menu One</a></li>
                 <li><a href="#">Menu Two</a></li>
@@ -82,7 +82,7 @@
             <li>
               <a href="about.html">Про нас</a>
             </li>
-            <li><a href="{% url 'core:shop' %}">Каталог</a></li>
+            <li><a href="">Каталог</a></li>
             <li><a href="#">Новинки</a></li>
             <li><a href="contact.html">Контакты</a></li>
           </ul>

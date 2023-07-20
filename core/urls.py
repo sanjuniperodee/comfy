@@ -6,6 +6,8 @@ app_name = 'core'
 
 urlpatterns = [
     path('', home, name='home'),
-    path('shop', shop, name='shop'),
-    path('detail/<slug>', detail, name='detail')
+    path('shop/<str:ctg>/<str:ctg2>', shop, name='shop'),
+    path('cart', cart, name='cart'),
+    path('detail/<slug>', detail, name='detail'),
+    path('add-to-cart1', add_to_cart1, name='add-to-cart1'),
 ]

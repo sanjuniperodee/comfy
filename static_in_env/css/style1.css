@@ -146,8 +146,8 @@ a {
     margin-bottom: 0px; }
     @media (min-width: 768px) {
       .site-navbar .site-navbar-top {
-        padding-top: 40px;
-        padding-bottom: 40px; } }
+        padding-top: 20px;
+        padding-bottom: 20px; } }
   .site-navbar .site-search-icon a span {
     display: inline-block;
     margin-right: 10px; }

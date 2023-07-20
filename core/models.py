@@ -25,7 +25,6 @@ class SubCategory(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=225, null=True)
-    # subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=None, null=True)
     subcategories = models.ManyToManyField(SubCategory, default=None)
     def __str__(self):
         return self.title
