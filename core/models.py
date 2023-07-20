@@ -7,18 +7,12 @@ from django.shortcuts import reverse, get_object_or_404, redirect
 from django.utils import timezone
 from django_countries.fields import CountryField
 
-ADDRESS_CHOICES = (
-    ('B', 'Billing'),
-    ('S', 'Shipping'),
-)
-
 class Brand(models.Model):
     title = models.CharField(max_length=15)
     def __str__(self):
         return self.title
 class SubCategory(models.Model):
     title = models.CharField(max_length=225)
-    brand = models.ManyToManyField(Brand, default=None)
     def __str__(self):
         return self.title
 
