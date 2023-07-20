@@ -20,8 +20,8 @@ def shop(request, ctg, ctg2):
     paginator = Paginator(object_list, 16)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    pages = int(len(object_list)/16)
-    if len(object_list) % 16 > 0:
+    pages = int(len(object_list)/18)
+    if len(object_list) % 18 > 0:
         pages+=1
     context = {
         'pages': range(1,pages+1),
