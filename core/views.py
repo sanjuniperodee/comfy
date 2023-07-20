@@ -17,7 +17,7 @@ def shop(request, ctg, ctg2):
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
     else:
         object_list = Item.objects.filter(category__title=ctg)
-    paginator = Paginator(object_list, 16)
+    paginator = Paginator(object_list, 18)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     pages = int(len(object_list)/18)

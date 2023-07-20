@@ -126,7 +126,7 @@
                     <li><a href="?page={{ items.previous_page_number }}">&lt;</a></li>
                   {% endif %}
                       {% for i in pages %}
-                          <li href="?page={{ i }}" {% if items.number == i %}class="active"{% endif %}><span>{{ i }}</span></li>
+                          <li {% if items.number == i %}class="active"{% endif %}><a href="?page={{ i }}"><span>{{ i }}</span></a></li>
                       {% endfor %}
                   {% if items.has_next %}
                     <li><a href="?page={{ items.next_page_number }}">&gt;</a></li>
