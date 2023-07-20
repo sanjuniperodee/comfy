@@ -23,9 +23,10 @@ def shop(request, ctg, ctg2):
     pages = int(len(object_list)/18)
     if len(object_list) % 18 > 0:
         pages+=1
+    category = Category.objects.filter(title=ctg)[0]
     context = {
         'pages': range(1,pages+1),
-        'category': Category.objects.filter(title=ctg)[0],
+        'category': category,
         'items': page_obj,
         'user': request.user,
     }
