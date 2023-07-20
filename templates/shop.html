@@ -87,6 +87,11 @@
               </div>
               {% endfor %}
             </div>
+          {% if items.has_other_pages %}
+              {% for page in itme.pages %}
+                  {{ page }}
+              {% endfor %}
+          {% endif %}
             {% if items.has_other_pages %}
               <nav class="d-flex justify-content-center wow fadeIn">
                 <ul class="pagination pg-blue">
