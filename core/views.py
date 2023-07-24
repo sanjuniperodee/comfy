@@ -160,3 +160,41 @@ def add_to_cart(request, slug):
         order.items.add(order_item)
         messages.info(request, "This item was added to your cart.")
         return redirect("core:order-summary")
+
+
+@login_required
+def profile(request):
+    if request.method == "POST":
+        cnt = 0
+        if len(User.objects.filter(username=request.POST['username'])) > 0 and request.POST[
+            'username'] != request.user.username:
+            # messages.info(request, 'User already exists')
+            cnt = 1
+        if len(request.POST['password1']) > 0:
+            if len(request.POST['password1']) < 8:
+                # messages.info(request, 'Password must contain at least 8 symbols')
+                cnt = 1
+            if len(request.POST['password1']) and len(request.POST['password2']) and request.POST['password1'] != \
+                    request.POST['password2']:
+                # messages.info(request, 'Password not matching')
+                cnt = 1
+            if len(request.POST['password1']) < 8 and request.POST['password1'] == request.POST['password2']:
+                pattern = r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$'
+                if not re.match(pattern, password1):
+                    # messages.info(request, "Password must contain at least 1 uppercase, 1 lowercase and one number")
+                    cnt = 1
+        if cnt == 1:
+            return redirect('core:profile')
+        else:
+            if len(request.POST['password1']) > 0 and len(request.POST['password2']) > 0:
+                request.user.password1 = request.POST['password1']
+                request.user.password2 = request.POST['password2']
+
+            request.user.username = request.POST['username']
+            request.user.email = request.POST['email']
+            request.user.first_name = request.POST['first_name']
+            request.user.last_name = request.POST['last_name']
+            request.user.save()
+            return redirect('core:profile')
+    print(request.user.username)
+    return render(request, 'profile.html', {'user': request.user})

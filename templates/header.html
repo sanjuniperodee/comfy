@@ -37,14 +37,14 @@
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div>
-                <img src="{% static 'img/comfy_loog1.png' %}" height="80px">
+                <a href="{% url 'core:home' %}" style="height: 80px"><img src="{% static 'img/comfy_loog1.png' %}" height="80px"></a>
               </div>
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
+                  <li><a href="{% url 'core:profile' %}"><span class="icon icon-person"></span></a></li>
                   <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
                     <a href="{% url 'core:cart' %}" class="site-cart">
