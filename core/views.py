@@ -200,3 +200,7 @@ def profile(request):
             return redirect('core:profile')
     print(request.user.username)
     return render(request, 'profile.html', {'user': request.user})
+
+
+def about_us(request):
+    return render(request, 'about_us.html')
