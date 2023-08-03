@@ -9,8 +9,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <style>
+        *{
+            color: black;
+        }
+    </style>
 </head>
 <body>
 {% include 'header.html' %}
@@ -56,7 +62,7 @@
     </div>
 
 
-    <div class="features">
+    <div class="features" style="color: black">
         <div>
             <h2>5000+</h2>
             <a>Довольных клиентов</a>
@@ -74,12 +80,13 @@
             <a>Человек в команде</a>
         </div>
     </div>
-<div style="margin-top: 150px; margin-bottom: 300px">
+<div style="margin-top: 150px; margin-bottom: 150px; color: black">
     <div style="width:70%; height: 600px; margin-left: 8%; margin-top: 120px; position: absolute; transform: rotate(-15.05deg); transform-origin: 0 0; border-radius: 100%; border: 0.50px rgba(0, 0, 0, 0.20) solid"></div>
     <div style="width: 70%; height: 600px; margin-left: 11%; position: absolute; border-radius: 100%; border: 0.50px rgba(0, 0, 0, 0.20) solid"></div>
     <h2 style="width: 100%; text-align: center;">Почему Comfy You?</h2>
-            <div style="width: 300px; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); position: absolute"></div>
-
+    <div style="margin-top: 100px; position: absolute">
+        <div style="width: 300px; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); position: absolute"></div>
+    </div>
     <div class="comfy" style="z-index:1">
         <div class="block">
             <div class="first">
@@ -106,13 +113,13 @@
         </div>
     </div>
 
-<div style="margin-left: 80%; width: 10%; height: 300px; position: absolute; margin-top: 300px">
+<div style="margin-left: 80%; width: 10%; height: 300px; position: absolute; margin-top: 200px">
     <div style="width: 100%; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); "></div>
 </div>
 {#    #75AB30, #75AB30#}
 </div>
 
-<h2 style="width: 100%; text-align: center;">Распродажа</h2>
+<h2 style="width: 100%; text-align: center; color: black; margin-top: 20%">Распродажа</h2>
 <div style="display:flex; justify-content: space-between; margin: 5% 15%">
     <div style="text-align: center">
         <img src="{% static 'img/test.jpg' %}" width="200px"; height="200px">
@@ -147,8 +154,73 @@
         </div>
     </div>
 </div>
+<div style="margin-top: 400px; position: absolute">
+        <div style="width: 300px; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); position: absolute"></div>
+</div>
 
-<a href="www.youtube.com"><img src="{% static '/img/sale.jpg' %}" width="80%" style="margin: 0 10% 50px 10%"></a>
+
+<div style="margin: 15% 10%" id="catalog">
+    <h1>Каталог</h1>
+    <div style="display: flex; justify-content: space-between; gap: 2%; margin-bottom: 50px">
+        <div style="display: flex; justify-content: space-between; gap: 2%; width: 100%">
+            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240, 1); padding-top: 30px">
+                <h2 style="font-weight: bold">Люстры</h2>
+                <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
+                <img src="{% static 'img/lustre.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240,1); padding-top: 30px">
+                <h2 style="font-weight: bold">Двери</h2>
+                <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
+                <img src="{% static 'img/door.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 2%; width: 100%">
+            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240, 1); padding-top: 30px">
+                <h2 style="font-weight: bold">Декор для стен</h2>
+                <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
+                <img src="{% static 'img/design.avif' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240,1); padding-top: 30px">
+                <h2 style="font-weight: bold">Плинтуса</h2>
+                <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
+                <img src="{% static 'img/modling.avif' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; gap: 2%">
+        <div style="display: flex; justify-content: space-between; gap: 2%; width: 100%">
+            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240, 1);padding-top: 30px">
+                <h2 style="font-weight: bold">Напольные покрытия</h2>
+                <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}" >Смотреть все товары →</a>
+                <img src="{% static 'img/floor.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240,1); padding-top: 30px;">
+                <h2 style="font-weight: bold">Техническое освещение</h2>
+                <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
+                <img src="{% static 'img/spot.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+            </div>
+        </div>
+{#        <div style="display: flex; justify-content: space-between; gap: 2%; width: 100%">#}
+{#            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240, 1);">#}
+{#                <img src="{% static 'img/lustre.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">#}
+{#                <h2 style="font-weight: bold">Люстры</h2>#}
+{#                <a>Смотреть все товары →</a>#}
+{#            </div>#}
+{#            <div class="col-lg-6 col-md-6 col-sm-6 pb-1 col-6" style="background: rgba(239, 239, 240,1)">#}
+{#                <img src="{% static 'img/lustre.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">#}
+{#                <h2 style="font-weight: bold">Люстры</h2>#}
+{#                <a>Смотреть все товары →</a>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+{#    <div style="margin-left: 80%; width: 10%; height: 300px; position: absolute;">#}
+{#    <div style="width: 100%; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); "></div>#}
+{#</div>#}
+</div>
+<div style="margin-left: 80%; width: 10%; height: 300px; position: absolute; margin-top: 200px">
+    <div style="width: 100%; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); "></div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

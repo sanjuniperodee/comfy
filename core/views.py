@@ -36,7 +36,9 @@ def detail(request, slug):
     item = Item.objects.filter(slug=slug)[0]
     context = {
         'item': item,
-        'description1': item.description1.split('\n')
+        'description1': item.description1.split('\n'),
+        'description2': item.description2.split('\n'),
+        'description3': item.description3.split('\n')
     }
     return render(request, 'detail.html', context)
 

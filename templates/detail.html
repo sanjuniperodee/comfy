@@ -63,6 +63,21 @@
         </div>
       </div>
     </div>
+  <div class="d-flex justify-content-between" style="margin-left: 10%; margin-right: 20%">
+      <div>
+      <h2>Характеристики</h2>
+          {% for text in description2 %}
+              <p>{{ text }}</p>
+          {% endfor %}
+      </div>
+
+      <div>
+        <h2>Тех описание</h2>
+          {% for text in description3 %}
+              <p>{{ text }}</p>
+          {% endfor %}
+      </div>
+  </div>
 
     <div class="site-section block-3 site-blocks-2 bg-light">
       <div class="container">
