@@ -39,6 +39,8 @@ class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField(null=True, blank=True)
     height = models.FloatField(null=True, blank=True)
+    min_height = models.FloatField(null=True, blank=True)
+    max_height = models.FloatField(null=True, blank=True)
     length = models.FloatField(null=True, blank=True)
     width = models.FloatField(null=True, blank=True)
     diameter = models.FloatField(null=True, blank=True)
