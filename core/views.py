@@ -229,79 +229,84 @@ def create(request):
             except:
                 continue
             title = item.find('div', class_='catalog-card__title').text.strip()
-            print(link)
-            teh = ""
-            vnesh = ""
-            height = width = length = diameter = 0
-            fields = page.find_all('div', class_='characteristic-list__item')
-            for field in fields:
-                key = field.find_all('div')[0].text.strip()
-                value = re.sub(r'\s+', ' ', field.find_all('div')[1].text.strip())
-                if key == 'Артикул':
-                    articul = value
-                if key == 'Диаметр':
-                    diameter = value.split(' ')[0]
-                if key == 'Источник света' or key == 'Количество ламп' or key == 'Защита IP' or key == 'Диммируемые' or key == 'Напряжение' or key == 'Мощность':
-                    teh += key + ': ' + value + '\n'
-                if key == 'Цвет арматуры' or key == 'Материал арматуры':
-                    vnesh += key + ': ' + value + '\n'
-                if key == 'Высота':
-                    height = value.split(' ')[0]
-                if key == 'Ширина':
-                    width = value.split(' ')[0]
-                if key == 'Длина':
-                    length = value.split(' ')[0]
-            print(height)
-            price = page.find('span', class_='price').text.replace(' ', '').replace('₽', '')
-            print(price)
-            print(teh)
-            print(vnesh)
-            images = page.find_all('div', class_='product-card__thumbs-item')
-            image_urls = []
-            for image in images:
-                image_urls.append(href+image.find('img')['src'])
-            print(str(image_urls))
-            item = Item(title=title,
-                        category=Category.objects.get_or_create(title='Люстры')[0],
-                        subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
-                        articul=articul,
-                        price=int(price) * 6.5,
-                        slug=articul.replace(" ", "_"),
-                        description1=teh,
-                        description2=vnesh,
-                        brand=Brand.objects.get_or_create(title='Maytoni')[0],
-                        height=height,
-                        length=length,
-                        width=width,
-                        diameter=diameter
-            )
-            images = page.find_all('div', class_='product-card__thumbs-item')
-            image_urls = []
-            for image in images:
-                print()
-                image_urls.append(href+image.find('img')['src'].replace('40_40_0/', '').replace('resize_cache/', ''))
-            print(image_urls[0])
-            print(href+images[0].find('img')['src'])
-            response = requests.get(image_urls[0])
-            response.raise_for_status()
-            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item = Item.objects.filter(title=title)[0]
+            item.category = Category.objects.filter(title='Светильники', subcategories__title='Потолочные светильники')[0]
+            item.subcategory = SubCategory.objects.filter(title='Потолочные светильники')[0]
+            print(item.category)
             item.save()
-            i = 0
-            for imag in ItemImage.objects.filter(post=item):
-                imag.delete()
-            for imag in image_urls:
-                i += 1
-                if i == 1:
-                    continue
-                try:
-                    img = ItemImage(post=item)
-                    response = requests.get(imag)
-                    response.raise_for_status()
-                    img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
-                    img.save()
-                    print(i)
-                except:
-                    continue
+            # print(link)
+            # teh = ""
+            # vnesh = ""
+            # height = width = length = diameter = 0
+            # fields = page.find_all('div', class_='characteristic-list__item')
+            # for field in fields:
+            #     key = field.find_all('div')[0].text.strip()
+            #     value = re.sub(r'\s+', ' ', field.find_all('div')[1].text.strip())
+            #     if key == 'Артикул':
+            #         articul = value
+            #     if key == 'Диаметр':
+            #         diameter = value.split(' ')[0]
+            #     if key == 'Источник света' or key == 'Количество ламп' or key == 'Защита IP' or key == 'Диммируемые' or key == 'Напряжение' or key == 'Мощность':
+            #         teh += key + ': ' + value + '\n'
+            #     if key == 'Цвет арматуры' or key == 'Материал арматуры':
+            #         vnesh += key + ': ' + value + '\n'
+            #     if key == 'Высота':
+            #         height = value.split(' ')[0]
+            #     if key == 'Ширина':
+            #         width = value.split(' ')[0]
+            #     if key == 'Длина':
+            #         length = value.split(' ')[0]
+            # print(height)
+            # price = page.find('span', class_='price').text.replace(' ', '').replace('₽', '')
+            # print(price)
+            # print(teh)
+            # print(vnesh)
+            # images = page.find_all('div', class_='product-card__thumbs-item')
+            # image_urls = []
+            # for image in images:
+            #     image_urls.append(href+image.find('img')['src'])
+            # print(str(image_urls))
+            # item = Item(title=title,
+            #             category=Category.objects.get_or_create(title='Люстры')[0],
+            #             subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
+            #             articul=articul,
+            #             price=int(price) * 6.5,
+            #             slug=articul.replace(" ", "_"),
+            #             description1=teh,
+            #             description2=vnesh,
+            #             brand=Brand.objects.get_or_create(title='Maytoni')[0],
+            #             height=height,
+            #             length=length,
+            #             width=width,
+            #             diameter=diameter
+            # )
+            # images = page.find_all('div', class_='product-card__thumbs-item')
+            # image_urls = []
+            # for image in images:
+            #     print()
+            #     image_urls.append(href+image.find('img')['src'].replace('40_40_0/', '').replace('resize_cache/', ''))
+            # print(image_urls[0])
+            # print(href+images[0].find('img')['src'])
+            # response = requests.get(image_urls[0])
+            # response.raise_for_status()
+            # item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            # item.save()
+            # i = 0
+            # for imag in ItemImage.objects.filter(post=item):
+            #     imag.delete()
+            # for imag in image_urls:
+            #     i += 1
+            #     if i == 1:
+            #         continue
+            #     try:
+            #         img = ItemImage(post=item)
+            #         response = requests.get(imag)
+            #         response.raise_for_status()
+            #         img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            #         img.save()
+            #         print(i)
+            #     except:
+            #         continue
 
 # def create_loftit(request):
 #     href = 'https://loftit.ru/'
