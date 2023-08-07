@@ -215,28 +215,18 @@ def about_us(request):
     return render(request, 'about_us.html')
 
 def create(request):
-    href = 'https://maytoni.ru'
-    for i in range(1, 5):
-        url = href + "/catalog/decorative/potolochnye-svetilniki/?PAGEN_1=" + str(i)
-        soup = BeautifulSoup(get(url).text, 'html.parser')
-        responses = soup.find_all('div', class_='catalog__item')
-        print(len(responses))
-        for item in responses:
-            page = ''
-            try:
-                link = item.find_all('a')[1].get('href')
-                page = BeautifulSoup(get(href + link).text, 'html.parser')
-            except:
-                continue
-            title = item.find('div', class_='catalog-card__title').text.strip()
-            try:
-                item = Item.objects.filter(title=title)[0]
-                item.category = Category.objects.filter(title='Люстры', subcategories__title='Потолочные люстры')[0]
-                item.subcategory = SubCategory.objects.filter(title='Потолочные люстры')[0]
-                print(item.category)
-                item.save()
-            except:
-                continue
+    href = 'http://newport-shop.ru'
+    for i in range(1, 36):
+        url = href + "catalog/podvesnye_svetilniki/?PAGEN_1=" + str(i)
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Check if the request was successful
+            soup = BeautifulSoup(response.content, 'html.parser')
+            # Your parsing code here
+
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+        break
             # print(link)
             # teh = ""
             # vnesh = ""
