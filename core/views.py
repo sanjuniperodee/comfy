@@ -232,7 +232,7 @@ def create(request):
             try:
                 item = Item.objects.filter(title=title)[0]
                 item.category = Category.objects.filter(title='Люстры', subcategories__title='Подвесные люстры')[0]
-                item.subcategory = SubCategory.objects.filter(title='Подвесные светильники')[0]
+                item.subcategory = SubCategory.objects.filter(title='Подвесные люстры')[0]
                 print(item.category)
                 item.save()
             except:
