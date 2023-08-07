@@ -216,7 +216,7 @@ def about_us(request):
 
 def create(request):
     href = 'https://maytoni.ru'
-    for i in range(1, 8):
+    for i in range(1, 16):
         url = href + "/catalog/decorative/podvesy/?PAGEN_1=" + str(i)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         responses = soup.find_all('div', class_='catalog__item')
