@@ -216,8 +216,8 @@ def about_us(request):
 
 def create(request):
     href = 'https://maytoni.ru'
-    for i in range(1, 5):
-        url = href + "/catalog/decorative/potolochnye-svetilniki/?PAGEN_1=" + str(i)
+    for i in range(1, 16):
+        url = href + "/catalog/decorative/podvesy/?PAGEN_1=" + str(i)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         responses = soup.find_all('div', class_='catalog__item')
         print(len(responses))
@@ -230,8 +230,8 @@ def create(request):
                 continue
             title = item.find('div', class_='catalog-card__title').text.strip()
             item = Item.objects.filter(title=title)[0]
-            item.category = Category.objects.filter(title='Светильники', subcategories__title='Потолочные светильники')[0]
-            item.subcategory = SubCategory.objects.filter(title='Потолочные светильники')[0]
+            item.category = Category.objects.filter(title='Светильники', subcategories__title='Подвесные светильники')[0]
+            item.subcategory = SubCategory.objects.filter(title='Подвесные светильники')[0]
             print(item.category)
             item.save()
             # print(link)
