@@ -226,7 +226,12 @@ def create(request):
             print(href+product['href'])
             page = BeautifulSoup(get(href+product['href']).text, 'html.parser')
             title = page.find('h1', class_='main-title').text.strip()
-            price = int(page.find('div', class_='price').find('span').text.strip().replace(' руб.', '').replace(' ', ''))
+            if len(Item.objects.filter(title=title)) > 0:
+                continue
+            try:
+                price = int(page.find('div', class_='price').find('span').text.strip().replace(' руб.', '').replace(' ', ''))
+            except:
+                price = 0
             options = page.find_all('div', class_='characteristics')[1].find_all('tr')
             teh = outlook = ''
             for option in options:
