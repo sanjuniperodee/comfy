@@ -229,11 +229,14 @@ def create(request):
             except:
                 continue
             title = item.find('div', class_='catalog-card__title').text.strip()
-            item = Item.objects.filter(title=title)[0]
-            item.category = Category.objects.filter(title='Люстры', subcategories__title='Подвесные люстры')[0]
-            item.subcategory = SubCategory.objects.filter(title='Подвесные светильники')[0]
-            print(item.category)
-            item.save()
+            try:
+                item = Item.objects.filter(title=title)[0]
+                item.category = Category.objects.filter(title='Люстры', subcategories__title='Подвесные люстры')[0]
+                item.subcategory = SubCategory.objects.filter(title='Подвесные светильники')[0]
+                print(item.category)
+                item.save()
+            except:
+                continue
             # print(link)
             # teh = ""
             # vnesh = ""
