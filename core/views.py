@@ -20,7 +20,7 @@ from django.db.models import Count
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'categories': Category.objects.all()})
 
 def shop(request, ctg, ctg2):
     if ctg2 != 'all':
@@ -216,8 +216,8 @@ def about_us(request):
 
 def create(request):
     href = 'https://maytoni.ru'
-    for i in range(1, 16):
-        url = href + "/catalog/decorative/podvesy/?PAGEN_1=" + str(i)
+    for i in range(1, 5):
+        url = href + "/catalog/decorative/potolochnye-svetilniki/?PAGEN_1=" + str(i)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         responses = soup.find_all('div', class_='catalog__item')
         print(len(responses))
@@ -231,8 +231,8 @@ def create(request):
             title = item.find('div', class_='catalog-card__title').text.strip()
             try:
                 item = Item.objects.filter(title=title)[0]
-                item.category = Category.objects.filter(title='Люстры', subcategories__title='Подвесные люстры')[0]
-                item.subcategory = SubCategory.objects.filter(title='Подвесные люстры')[0]
+                item.category = Category.objects.filter(title='Люстры', subcategories__title='Потолочные люстры')[0]
+                item.subcategory = SubCategory.objects.filter(title='Потолочные люстры')[0]
                 print(item.category)
                 item.save()
             except:
