@@ -217,7 +217,7 @@ def about_us(request):
 def create(request):
     href = 'http://newport-shop.ru'
     for i in range(1, 36):
-        url = href + "catalog/podvesnye_svetilniki/?PAGEN_1=" + str(i)
+        url = href + "/catalog/podvesnye_svetilniki/?PAGEN_1=" + str(i)
         try:
             response = requests.get(url)
             response.raise_for_status()  # Check if the request was successful
