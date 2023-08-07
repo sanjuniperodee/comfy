@@ -254,7 +254,7 @@ def create(request):
                         slug=articul.replace(" ", "_"),
                         description1=teh,
                         description2=outlook,
-                        brand=Brand.objects.get_or_create(title='Maytoni')[0],
+                        brand=Brand.objects.get_or_create(title='Newport')[0],
                         height=height,
                         length=length,
                         width=width,
@@ -265,9 +265,6 @@ def create(request):
             response.raise_for_status()
             item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
             item.save()
-            i = 0
-            break
-        break
             # print(link)
             # teh = ""
             # vnesh = ""
