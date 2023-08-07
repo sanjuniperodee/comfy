@@ -243,11 +243,11 @@ def create(request):
                 if key == 'Артикул':
                     articul = value
                 if key == 'Ширина,см':
-                    width = value
+                    width = value.replace(',', '.')
                 if key == 'Длина,см':
-                    length = value
+                    length = value.replace(',', '.')
                 if key == 'Высота изделия, см':
-                    height = value
+                    height = value.replace(',', '.')
                 if key == 'Цоколь' or key == 'Количество источников света' or key == 'Мощность, W' or key == 'Общая мощность, W' or key == 'Степень защиты, IP' or key == 'Напряжение, V':
                     teh += key + ": " + value + '\n'
                 if key == 'Материал основания' or key == 'Цвет основания' or key == 'Стиль' or key == 'Форма' or key == 'Место установки':
