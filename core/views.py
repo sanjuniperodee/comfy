@@ -223,6 +223,7 @@ def create(request):
         products = soup.find_all('a', class_='name')
         print(len(products))
         for product in products:
+            length = height = width = 0
             print(href+product['href'])
             page = BeautifulSoup(get(href+product['href']).text, 'html.parser')
             title = page.find('h1', class_='main-title').text.strip()
