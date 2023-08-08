@@ -216,8 +216,8 @@ def about_us(request):
 
 def create(request):
     href = 'https://newport-shop.ru'
-    for i in range(1, 36):
-        url = href + "/catalog/podvesnye_svetilniki/?PAGEN_1=" + str(i)
+    for i in range(1, 11):
+        url = href + "/catalog/potolochnye_svetilniki/?PAGEN_1=" + str(i)
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         products = soup.find_all('a', class_='name')
@@ -254,10 +254,10 @@ def create(request):
                     outlook += key + ": " + value + '\n'
             item = Item(title=title,
                         category=Category.objects.get_or_create(title='Люстры')[0],
-                        subcategory=SubCategory.objects.get_or_create(title='Подвесные люстры')[0],
+                        subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
                         articul=articul,
                         price=price * 6.5,
-                        slug=articul.replace(" ", "_"),
+                        slug=articul.replace(" ", "_").replace('/', '_'),
                         description1=teh,
                         description2=outlook,
                         brand=Brand.objects.get_or_create(title='Newport')[0],
