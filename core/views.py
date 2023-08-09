@@ -12,6 +12,8 @@ from django.core.files.base import ContentFile
 from bs4 import BeautifulSoup
 from requests import get
 from django.db.models import Count
+from django.db.models import Min
+from django.db.models import Subquery
 
 
 
@@ -213,6 +215,13 @@ def profile(request):
 
 def about_us(request):
     return render(request, 'about_us.html')
+
+def delete_duplicates(request):
+    duplicate_names = Item.objects.values_list('articul', flat=True).distinct()
+
+    for email in duplicate_names:
+        Item.objects.filter(pk__in=Item.objects.filter(articul=email).values_list('pk', flat=True)[1:]).delete()
+
 
 def create(request):
     href = 'https://newport-shop.ru'
