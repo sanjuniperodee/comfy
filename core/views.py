@@ -37,6 +37,7 @@ def shop(request, ctg, ctg2):
         pages+=1
     category = Category.objects.filter(title=ctg)[0]
     context = {
+        'brands': Item.objects.filter(category__title=ctg).values('brand__title').distinct(),
         'pages': range(1,pages+1),
         'category': category,
         'items': page_obj,
