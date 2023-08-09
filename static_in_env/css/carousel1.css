@@ -8218,6 +8218,7 @@ h1, h2, h3, h4, h5,
     .owl-carousel .owl-nav .owl-next {
       right: 0; }
   .owl-carousel .owl-dots {
+    display: flex;
     text-align: center;
     margin-top: 20px; }
     .owl-carousel .owl-dots .owl-dot {

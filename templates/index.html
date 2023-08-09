@@ -307,12 +307,25 @@
         </div>
     </div>
 </section>
- <div style="display: flex; justify-content: space-between; margin: 5% 10%">
+ <div class="brands">
      <img src="{% static 'img/maytoni.png' %}" height="70px">
      <img src="{% static 'img/odeon.png' %}" height="70px">
      <img src="{% static 'img/StLuce.png' %}" height="70px">
      <img src="{% static 'img/KinkLight.png' %}" height="70px">
  </div>
+<div style="background-color: #7FC75B; width: 100%; display: flex; justify-content: space-between">
+    <div style="padding-top: 100px; padding-left: 8%">
+        <h1>Получи бесплатную консультацию</h1>
+        <p>Оставь свой номер телефона и мы тебе перезвоним в течение нескольких часов, ответим на все ваши интересующие вопросы</p>
+        <form action="#" method="post">
+            <div class="form-group d-flex">
+              <input type="text" class="form-control py-4" style="width: auto" id="email_subscribe" placeholder="8-(708)-242-04-82">
+              <input type="submit" class="btn btn-sm btn-primary" style="width: auto;" value="Отправить">
+            </div>
+        </form>
+    </div>
+    <img src="{% static 'img/contact_me.png' %}" height="400px">
+</div>
 <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 <script type="text/javascript">
     var map;

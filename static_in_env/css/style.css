@@ -87,3 +87,16 @@
     align-items: center;
     margin-bottom: 10%;
 }
+
+.brands{
+    margin-top: 50px;
+    display: flex; 
+    justify-content: space-between; 
+    margin: 5% 10%
+}
+@media screen and (max-width: 768px) {
+    .brands{
+        flex-direction: column;
+        gap: 50px;
+    }
+}
