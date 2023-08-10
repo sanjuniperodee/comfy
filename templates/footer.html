@@ -63,4 +63,17 @@
         </div>
       </div>
     </footer>
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script type="text/javascript">
+    var map;
+
+    DG.then(function () {
+        map = DG.map('map', {
+            center: [51.178030, 71.458079],
+            zoom: 13
+        });
+
+        DG.marker([51.178030, 71.458079]).addTo(map).bindPopup('Казахстан, Астана, улица Шары Жиенкуловой, 8/2');
+    });
+</script>
 </html>
