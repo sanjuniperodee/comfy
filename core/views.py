@@ -37,6 +37,7 @@ def shop(request, ctg, ctg2):
         pages+=1
     category = Category.objects.filter(title=ctg)[0]
     context = {
+        'categories': Category.objects.all()
         'brands': Item.objects.filter(category__title=ctg).values('brand__title').distinct(),
         'pages': range(1,pages+1),
         'category': category,
@@ -51,6 +52,7 @@ def detail(request, slug):
         'item': item,
         'description1': item.description1.split('\n'),
         'description2': item.description2.split('\n'),
+        'categories': Category.objects.all()
     }
     return render(request, 'detail.html', context)
 
@@ -90,6 +92,7 @@ def cart(request):
     print(request.user)
     context = {
         'order': order,
+        'categories': Category.objects.all()
     }
     return render(request, 'cart.html', context)
 
@@ -211,7 +214,7 @@ def profile(request):
             request.user.save()
             return redirect('core:profile')
     print(request.user.username)
-    return render(request, 'profile.html', {'user': request.user})
+    return render(request, 'profile.html', {'user': request.user,'categories': Category.objects.all()})
 
 
 def about_us(request):
