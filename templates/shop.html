@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css'%}">
-
-      <link rel="stylesheet" href="{% static 'css/price_rangs.css'%}">
-
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="{% static 'css/price_rangs.css'%}">
+    <link rel="stylesheet" href="{% static 'css/slick.css'%}">
     <link rel="stylesheet" href="{% static 'css/aos.css'%}">
 
     <link rel="stylesheet" href="{% static 'css/style1.css'%}">
@@ -148,27 +148,27 @@
             </div>
 
             <div class="border p-4 rounded mb-4">
-              <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Фильтр по цене</h3>
-                  <div class="widgets_inner">
-                    <div class="range_item">
-                        <!-- <div id="slider-range"></div> -->
-                        <input type="text" class="js-range-slider" value="" />
-                        <div class="d-flex">
-                            <div class="price_text">
-                                <p>Price :</p>
+              <aside class="left_widgets p_filter_widgets price_rangs_aside">
+                    <div class="l_w_stitle">
+                    <h3 class="mb-3 h6 text-black d-block">Цена</h3>
+                    </div>
+                    <div class="widgets_inner">
+                        <div class="range_item">
+                            <input type="text" class="js-range-slider" value="" />
+                            <div class="d-flex pb-0">
+                            <p style="margin-bottom: 0">от: </p>
+                            <p style="margin-bottom: 0"><input style="margin-bottom: 0; border: none" type="text" class="js-input-from" id="amount" readonly /></p>
                             </div>
-                            <div class="price_value d-flex justify-content-center">
-                                <input type="text" class="js-input-from" id="amount" readonly />
-                                <span>to</span>
-                                <input type="text" class="js-input-to" id="amount" readonly />
+                            <div class="d-flex">
+                            <p>до: </p>
+                            <p><input style="border: none" type="text" class="js-input-to" id="amount" readonly /></p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </aside>
               </div>
 
-              <div class="mb-4">
+            <div class="border p-4 rounded mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Бренд</h3>
                   {% for brand in brands %}
                 <label for="s_sm" class="d-flex">
@@ -242,6 +242,7 @@
   <script src="{% static 'js/owl.carousel.min.js'%}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
   <script src="{% static 'js/aos.js'%}"></script>
+  <script src="{% static 'js/price_rangs.js'%}"></script>
   <script src="{% static 'js/main.js'%}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">

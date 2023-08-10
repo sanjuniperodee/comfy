@@ -36,19 +36,23 @@
                 <h1 style="color: white; margin-bottom: 2%">Создаем уют в вашем доме</h1>
                 <div style="display: flex; gap: 30px;">
                     <div style="color: white; background-color: #82BA66; align-items: center; width: 200px; display: flex; justify-content: space-around;">
-                        <a>Посмотреть Каталог</a>
+                        <a href="#catalog" style="color: white">Посмотреть Каталог</a>
                     </div>
                     <div style="color: #82BA66; border-style: solid; padding: 20px; align-items: center; width: 200px; display: flex; justify-content: space-around; border-color: #82BA66; border-width: 2px;">
-                        <a>
+                        <a href="#call" style="color: white">
                             Заказать Звонок
                         </a>
                     </div>
                 </div>
             </div>
           </div>
-          <div class="carousel-item" style="background-image: url({% static 'img/comfy3.jpg' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center; filter: brightness(60%);">
+          <div class="carousel-item" style="background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url({% static 'img/laminat.jpg' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
             <!-- <img class="d-block w-100" src="comfy.avif" alt="Second slide" width="100%"> -->
-            123
+              <div style="text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; filter: brightness(100%)">
+                  <h1>СУПЕР СКИДКА</h1>
+                  <h3>Ламинат Kraft</h3>
+                  <h1 style="background-color: orangered; color: white; width: max-content; padding: 1%">12 500</h1>
+              </div>
           </div>
           <div class="carousel-item" style="background-image: url({% static 'img/comfy2.jpg'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
             <a href=""> 123</a>
@@ -313,7 +317,7 @@
      <img src="{% static 'img/StLuce.png' %}" height="70px">
      <img src="{% static 'img/KinkLight.png' %}" height="70px">
  </div>
-<div style="background-color: #7FC75B; width: 100%; display: flex; justify-content: space-between">
+<div style="background-color: #7FC75B; width: 100%; display: flex; justify-content: space-between" id="call">
     <div style="padding-top: 100px; padding-left: 8%">
         <h1>Получи бесплатную консультацию</h1>
         <p>Оставь свой номер телефона и мы тебе перезвоним в течение нескольких часов, ответим на все ваши интересующие вопросы</p>
