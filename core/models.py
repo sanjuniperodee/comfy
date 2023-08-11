@@ -54,6 +54,7 @@ class Item(models.Model):
     description2 = models.TextField(null=True, blank=True)
     description3 = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True)
+    sales = models.BooleanField(null=True, blank=True, default=False)
     def __str__(self):
         return self.title
 

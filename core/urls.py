@@ -16,5 +16,6 @@ urlpatterns = [
     path('profile', profile, name='profile'),
     path('about_us', about_us, name='about_us'),
     path('delete_duplicates', delete_duplicates, name='delete_duplicates'),
-    path('create', create, name='create')
+    path('create', create, name='create'),
+    path('sales', sales, name='sales')
 ]

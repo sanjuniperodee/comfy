@@ -3,7 +3,7 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <footer class="site-footer border-top" style="background: linear-gradient(to bottom, rgba(189, 195, 199, 1), white);">
       <div class="container">
@@ -44,21 +44,25 @@
                 <li class="email">comfy.you@gmail.com</li>
 {#                <li><a href="https://2gis.kz/almaty/firm/70000001052458346?m=76.917042%2C43.204335%2F14.43"><img src="{% static 'img/logo-2gis.png' %}" height="30px"></a></li>#}
               </ul>
+              <div style="display: flex; gap: 15px; margin-bottom: 20px">
+                  <a href="https://www.instagram.com/comfy_you.kz/" style="font-size: 30px" class="fa fa-instagram"></a>
+                  <a href="https://t.me/+77020590238" style="font-size: 30px" class="fa fa-telegram"></a>
+                  <a href="https://wa.me/+77020590238" style="font-size: 30px" class="fa fa-whatsapp"></a>
+              </div>
+              <div class="block-7">
+                  <form action="#" method="post">
+                    <h3 class="footer-heading mb-4">Получать все новости</h3>
+                    <div class="form-group">
+                      <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                      <input type="submit" class="btn btn-sm btn-primary" value="ОК">
+                    </div>
+                  </form>
+              </div>
+
           </div>
           <div class="col-md-6 col-lg-3">
-            <div class="block-7">
-              <form action="#" method="post">
-                <h3 class="footer-heading mb-4">Получать все новости</h3>
-                <div class="form-group">
-                  <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                  <input type="submit" class="btn btn-sm btn-primary" value="ОК">
-                </div>
-              </form>
-              <li>
-                    <h1 class="text-secondary text-uppercase mb-4 text-dark">Мы в <img src="{% static 'img/2gis.png' %}" width="45%"></h1>
-                    <div id="map" style="width:100%; height:250px"></div>
-                </li>
-            </div>
+            <h1 class="text-secondary text-uppercase mb-4 text-dark">Мы в <img src="{% static 'img/2gis.png' %}" width="45%"></h1>
+            <div id="map" style="width:100%; height:250px"></div>
           </div>
         </div>
       </div>

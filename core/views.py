@@ -218,7 +218,25 @@ def profile(request):
 
 
 def about_us(request):
-    return render(request, 'about_us.html')
+    return render(request, 'about_us.html', {'categories': Category.objects.all()})
+
+def sales(request):
+    object_list = Item.objects.filter(sales=True)
+    paginator = Paginator(object_list, 18)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    pages = int(len(object_list) / 18)
+    if len(object_list) % 18 > 0:
+        pages += 1
+    context = {
+        'categories': Category.objects.all(),
+        'brands': object_list.values('brand__title').distinct(),
+        'pages': range(1, pages + 1),
+        'category': 'Акции',
+        'items': page_obj,
+        'user': request.user,
+    }
+    return render(request, 'shop.html', context)
 
 def delete_duplicates(request):
     duplicate_names = Item.objects.values_list('articul', flat=True).distinct()
