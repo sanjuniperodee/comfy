@@ -263,50 +263,53 @@ def create(request):
             print(href+product['href'])
             page = BeautifulSoup(get(href+product['href']).text, 'html.parser')
             title = page.find('h1', class_='main-title').text.strip()
-            if len(Item.objects.filter(title=title)) > 0:
-                continue
-            try:
-                price = int(page.find('div', class_='price').find('span').text.strip().replace(' руб.', '').replace(' ', ''))
-            except:
-                price = 0
-            options = page.find_all('div', class_='characteristics')[1].find_all('tr')
-            teh = outlook = ''
-            for option in options:
-                spans = option.find_all('td')
-                key = spans[0].text.strip()
-                value = spans[1].text.strip()
-                print(key + ": " + value)
-                if key == 'Артикул':
-                    articul = value
-                if key == 'Ширина,см':
-                    width = value.replace(',', '.')
-                if key == 'Длина,см':
-                    length = value.replace(',', '.')
-                if key == 'Высота изделия, см':
-                    height = value.replace(',', '.')
-                if key == 'Цоколь' or key == 'Количество источников света' or key == 'Мощность, W' or key == 'Общая мощность, W' or key == 'Степень защиты, IP' or key == 'Напряжение, V':
-                    teh += key + ": " + value + '\n'
-                if key == 'Материал основания' or key == 'Цвет основания' or key == 'Стиль' or key == 'Форма' or key == 'Место установки':
-                    outlook += key + ": " + value + '\n'
-            item = Item(title=title,
-                        category=Category.objects.get_or_create(title='Люстры')[0],
-                        subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
-                        articul=articul,
-                        price=price * 5.5,
-                        slug=articul.replace(" ", "_").replace('/', '_').replace('+', '').replace('-',''),
-                        description1=teh,
-                        description2=outlook,
-                        brand=Brand.objects.get_or_create(title='Newport')[0],
-                        height=height,
-                        length=length,
-                        width=width,
-            )
-            image = href + page.find('div', class_="main-img").find('img')['src']
-            print(image)
-            response = requests.get(image)
-            response.raise_for_status()
-            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item = Item.objects.filter(title=title)
+            item.subcategory = SubCategory.objects.filter(title='Подвесные люстры')[0]
             item.save()
+            # if len(Item.objects.filter(title=title)) > 0:
+            #     continue
+            # try:
+            #     price = int(page.find('div', class_='price').find('span').text.strip().replace(' руб.', '').replace(' ', ''))
+            # except:
+            #     price = 0
+            # options = page.find_all('div', class_='characteristics')[1].find_all('tr')
+            # teh = outlook = ''
+            # for option in options:
+            #     spans = option.find_all('td')
+            #     key = spans[0].text.strip()
+            #     value = spans[1].text.strip()
+            #     print(key + ": " + value)
+            #     if key == 'Артикул':
+            #         articul = value
+            #     if key == 'Ширина,см':
+            #         width = value.replace(',', '.')
+            #     if key == 'Длина,см':
+            #         length = value.replace(',', '.')
+            #     if key == 'Высота изделия, см':
+            #         height = value.replace(',', '.')
+            #     if key == 'Цоколь' or key == 'Количество источников света' or key == 'Мощность, W' or key == 'Общая мощность, W' or key == 'Степень защиты, IP' or key == 'Напряжение, V':
+            #         teh += key + ": " + value + '\n'
+            #     if key == 'Материал основания' or key == 'Цвет основания' or key == 'Стиль' or key == 'Форма' or key == 'Место установки':
+            #         outlook += key + ": " + value + '\n'
+            # item = Item(title=title,
+            #             category=Category.objects.get_or_create(title='Люстры')[0],
+            #             subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
+            #             articul=articul,
+            #             price=price * 5.5,
+            #             slug=articul.replace(" ", "_").replace('/', '_').replace('+', '').replace('-',''),
+            #             description1=teh,
+            #             description2=outlook,
+            #             brand=Brand.objects.get_or_create(title='Newport')[0],
+            #             height=height,
+            #             length=length,
+            #             width=width,
+            # )
+            # image = href + page.find('div', class_="main-img").find('img')['src']
+            # print(image)
+            # response = requests.get(image)
+            # response.raise_for_status()
+            # item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            # item.save()
             # print(link)
             # teh = ""
             # vnesh = ""
