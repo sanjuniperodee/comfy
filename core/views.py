@@ -288,7 +288,7 @@ def create(request):
                         subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
                         articul=articul,
                         price=price * 6.5,
-                        slug=articul.replace(" ", "_").replace('/', '_'),
+                        slug=articul.replace(" ", "_").replace('/', '_').replace('+', '').replace('-',''),
                         description1=teh,
                         description2=outlook,
                         brand=Brand.objects.get_or_create(title='Newport')[0],

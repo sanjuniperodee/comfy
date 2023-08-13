@@ -24,12 +24,14 @@
 
     <link rel="stylesheet" href="{% static 'css/style1.css'%}">
     <style>
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth;
+
+        }
     </style>
 </head>
 <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
-        <div class="container">
+        <div style="margin: 0 10%;">
           <div class="row align-items-center">
 
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
@@ -64,60 +66,93 @@
           </div>
         </div>
       </div>
-      <nav class="site-navigation text-right text-md-center" role="navigation">
-        <div class="container">
+      <nav class="site-navigation text-right text-md-center w-100" role="navigation">
+        <div style="margin: 0 10%;">
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li class="has-children active">
-              <a href="index.html">Домашняя страница</a>
+              <a href="index.html" style="color: black">Паркет</a>
               <ul class="dropdown">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
                 <li class="has-children">
                   <a href="#">Sub Menu</a>
                   <ul class="dropdown">
                     <li><a href="#">Menu One</a></li>
                     <li><a href="#">Menu Two</a></li>
-                    <li class="has-children">
-                      <a href="#">Sub Menu</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
-                    <li class="has-children">
-                      <a href="#">Sub Menu</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li>
-              <a href="{% url 'core:about_us' %}">Про нас</a>
-            </li>
-            <li class="has-children">
-              <a href="#catalog">Каталог</a>
+            <li class="has-children active">
+              <a href="index.html" style="color: black">Ламинат</a>
               <ul class="dropdown">
-              {% for category in categories %}
                 <li class="has-children">
-                  <a href="{% url 'core:shop' category.title 'all' %}">{{ category.title }}</a>
+                  <a href="#">Sub Menu</a>
                   <ul class="dropdown">
-                  {% for subcategory in category.subcategories.all %}
-                    <li><a href="{% url 'core:shop' category.title subcategory.title%}">{{ subcategory.title }}</a></li>
-                  {% endfor %}
+                    <li><a href="#">Menu One</a></li>
+                    <li><a href="#">Menu Two</a></li>
                   </ul>
                 </li>
-                {% endfor %}
               </ul>
             </li>
-            <li><a href="{% url 'core:sales' %}">Акции</a></li>
-            <li><a href="contact.html">Контакты</a></li>
+            <li class="has-children active">
+              <a href="index.html" style="color: black">SPC</a>
+              <ul class="dropdown">
+                <li class="has-children">
+                  <a href="#">Sub Menu</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Menu One</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="has-children active">
+              <a href="index.html" style="color: black">Декоративный свет</a>
+              <ul class="dropdown">
+                <li class="has-children">
+                  <a href="#">Sub Menu</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Menu One</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="has-children active">
+              <a href="index.html" style="color: black">Технический свет</a>
+              <ul class="dropdown">
+                <li class="has-children">
+                  <a href="#">Sub Menu</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Menu One</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="has-children active">
+              <a href="index.html" style="color: black">Плинтус</a>
+              <ul class="dropdown">
+                <li class="has-children">
+                  <a href="#">Sub Menu</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Menu One</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="has-children active">
+              <a href="index.html" style="color: black">Декор для стен</a>
+              <ul class="dropdown">
+                <li class="has-children">
+                  <a href="#">Sub Menu</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Menu One</a></li>
+                    <li><a href="#">Menu Two</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </nav>

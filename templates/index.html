@@ -17,13 +17,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <style>
         *{
+            padding: 0;
+            margin: 0;
             color: black;
         }
     </style>
 </head>
 <body>
 {% include 'header.html' %}
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 100%; margin-bottom: 50px;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-bottom: 50px;">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -69,7 +71,7 @@
     </div>
 
 
-    <div class="row" style="color: black; margin: 5% 10%; text-align: center">
+    <div class="row" style="color: black;text-align: center; width: 100%">
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6 mb-5">
             <h2>5000+</h2>
             <a>Довольных клиентов</a>
@@ -105,7 +107,7 @@
                 <a>100% гарантия на год</a>
             </div>
         </div>
-        <div class="center d-none d-sm-block" style="background-image: url('{% static 'img/center.jpg' %}'); background-size: cover; background-position: center;">
+        <div class="block center d-none d-sm-block" style="background-image: url('{% static 'img/center.jpg' %}'); background-size: cover; background-position: center;">
             <img src="">
         </div>
         <div class="block">
@@ -127,7 +129,7 @@
 </div>
 
 <h2 style="width: 100%; text-align: center; color: black; margin-top: 10%">Распродажа</h2>
-<div style="margin: 5% 10%" class="row">
+<div class="row" style="padding: 0 10%; margin: 0">
     <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
         <img src="{% static 'img/test.jpg' %}" width="100%">
         <div><a>Maytoni House H311</a> <img></div>
