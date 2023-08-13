@@ -173,46 +173,39 @@
     <div class="row">
         <h1>Каталог</h1>
         <div class="row d-flex justify-content-around">
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1 col-10 " style="margin-bottom: 30px;">
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1 col-10 " style="margin-bottom: 30px;">
                 <div style="border-radius: 5px; background: rgba(239, 239, 240, 0.6); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
                     <h3 style="font-weight: bold">Люстры</h3>
                     <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
-                    <img src="{% static 'img/lustre.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+                    <img src="{% static 'img/lustre.png' %}"  style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
                 <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
                     <h3 style="font-weight: bold">Светильники</h3>
                     <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
-                    <img src="{% static 'img/svetilniki.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+                    <img src="{% static 'img/svetilnik.png' %}" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
-                <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
-                    <h3 style="font-weight: bold">Двери</h3>
-                    <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
-                    <img src="{% static 'img/door.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
                 <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
                     <h3 style="font-weight: bold">Декор для дома</h3>
                     <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
-                    <img src="{% static 'img/design.avif' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+                    <img src="{% static 'img/decor.webp' %}"  style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
                 <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
                     <h3 style="font-weight: bold">Напольные покрытия</h3>
                     <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}" >Смотреть все товары →</a>
-                    <img src="{% static 'img/floor.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+                    <img src="{% static 'img/parket.png' %}"  style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
                 <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
                     <h3 style="font-weight: bold">Техническое освещение</h3>
                     <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
-                    <img src="{% static 'img/spot.png' %}" width="250px" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+                    <img src="{% static 'img/spot.png' %}" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
         </div>
@@ -313,12 +306,164 @@
         </div>
     </div>
 </section>
- <div class="brands">
-     <img src="{% static 'img/maytoni.png' %}" height="70px">
-     <img src="{% static 'img/odeon.png' %}" height="70px">
-     <img src="{% static 'img/StLuce.png' %}" height="70px">
-     <img src="{% static 'img/KinkLight.png' %}" height="70px">
- </div>
+
+<section class="ftco-section mb-0 pb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-section mb-5 pb-md-4">Наши работы</h2>
+            </div>
+            <div class="col-md-12">
+                <div class="featured-carousel owl-carousel">
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/maytoni.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/arte.svg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/cloyd.svg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/crystallux.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/favourite.svg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/freya.svg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/loftit.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/lumion.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/Newport.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/novotech.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/stilfort.jpg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/vamsvet.svg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/wertmark.svg' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/odeon.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/StLuce.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-center justify-content-center rounded" style="background-image: url({% static 'img/KinkLight.png' %}); background-size: contain">
+                                <a href="#" class="icon d-flex align-items-center justify-content-center">
+                                    <span class="ion-ios-search"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div style="background-color: #7FC75B; width: 100%; display: flex; justify-content: space-between" id="call">
     <div style="padding-top: 100px; padding-left: 8%">
         <h1>Получи бесплатную консультацию</h1>
