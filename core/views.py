@@ -244,11 +244,16 @@ def delete_duplicates(request):
     for email in duplicate_names:
         Item.objects.filter(pk__in=Item.objects.filter(articul=email).values_list('pk', flat=True)[1:]).delete()
 
+def change_prices(request):
+    for item in Item.objects.all():
+        item.price = item.price/6.5 * 5.5
+        item.save()
+
 
 def create(request):
     href = 'https://newport-shop.ru'
     for i in range(1, 11):
-        url = href + "/catalog/potolochnye_svetilniki/?PAGEN_1=" + str(i)
+        url = href + "/catalog/podvesnye_svetilniki/?PAGEN_1=" + str(i)
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         products = soup.find_all('a', class_='name')
