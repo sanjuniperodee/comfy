@@ -18,5 +18,5 @@ urlpatterns = [
     path('delete_duplicates', delete_duplicates, name='delete_duplicates'),
     path('create', create, name='create'),
     path('sales', sales, name='sales'),
-    path('price', change_prices, name='price')
+    # path('price', change_prices, name='price')
 ]
