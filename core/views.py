@@ -263,7 +263,7 @@ def create(request):
             print(href+product['href'])
             page = BeautifulSoup(get(href+product['href']).text, 'html.parser')
             title = page.find('h1', class_='main-title').text.strip()
-            item = Item.objects.filter(title=title)
+            item = Item.objects.filter(title=title)[0]
             item.subcategory = SubCategory.objects.filter(title='Подвесные люстры')[0]
             item.save()
             # if len(Item.objects.filter(title=title)) > 0:
