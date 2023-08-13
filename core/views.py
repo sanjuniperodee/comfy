@@ -292,7 +292,7 @@ def create(request):
                         category=Category.objects.get_or_create(title='Люстры')[0],
                         subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
                         articul=articul,
-                        price=price * 6.5,
+                        price=price * 5.5,
                         slug=articul.replace(" ", "_").replace('/', '_').replace('+', '').replace('-',''),
                         description1=teh,
                         description2=outlook,
