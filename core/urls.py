@@ -17,6 +17,7 @@ urlpatterns = [
     path('about_us', about_us, name='about_us'),
     path('delete_duplicates', delete_duplicates, name='delete_duplicates'),
     path('create', create, name='create'),
+    path('create_loftit', create_loftit, name='create_loftit'),
     path('sales', sales, name='sales'),
     # path('price', change_prices, name='price')
 ]

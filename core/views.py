@@ -381,117 +381,114 @@ def create(request):
             #     except:
             #         continue
 
-# def create_loftit(request):
-#     href = 'https://loftit.ru/'
-#     for i in range(1, 2):
-#         url = href + "catalog/lyustry/?sp=" + str(i)
-#         soup = BeautifulSoup(get(url).text, 'html.parser')
-#         responses = soup.find_all('div', class_='catalog__item')
-#         print(len(responses))
-#         for item in responses:
-#             try:
-#                 link = item.find_all('a')[1].get('href')
-#                 page = BeautifulSoup(get(href + link).text, 'html.parser')
-#                 title = item.find('div', class_='catalog-card__title').text.strip()
-#                 print(title)
-                # if len(Item.objects.filter(title=title)) > 0:
-                #     continue
-                # price = int(page.find('div', class_='items_price').text.replace(' ', '').replace('\xa0', '').replace('\n',
-                #                                                                                                      '').replace(
-                #     '\t', '').replace('руб.', ''))
-                # descriptions = page.find_all('div', class_='col-md-6 hars')
-                # teh = ""
-                # outlook = ""
-                # diametre = 0
-                # height = 0
-                # max_height = 0
-                # min_height = 0
-                # for i in descriptions:
-                #     if i.text.split('\n')[1].startswith('Тип цоколя:'):
-                #         teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Лампочки в комплекте:'):
-                #         teh+=i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Напряжение питания, В:'):
-                #         teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Степень защиты, IP:'):
-                #         teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #
-                #     if i.text.split('\n')[1].startswith('Форма светильника:'):
-                #         outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Форма плафона:'):
-                #         outlook+=i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Стиль светильника:'):
-                #         outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Интерьер:'):
-                #         outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     elif i.text.split('\n')[1].startswith('Материал основания:'):
-                #         outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
-                #     if i.text.split('\n')[1].startswith('Диаметр, мм:'):
-                #         diametre = i.text.split('\n')[2]
-                #     if i.text.split('\n')[1].startswith('Высота, мм:'):
-                #         height = i.text.split('\n')[2]
-                #     if i.text.split('\n')[1].startswith('Высота минимальная, мм:'):
-                #         min_height = i.text.split('\n')[2]
-                #     if i.text.split('\n')[1].startswith('Высота максимальная, мм:'):
-                #         max_height = i.text.split('\n')[2]
-                # print(teh)
-                # print('height: ' + str(height))
-                # print('diameter: ' + str(diametre))
-                # image_urls = []
-                # images = page.find_all('img', class_='img-fluid')
-                # for image in images:
-                #     image_urls.append(href+image['src'])
-                # print('Title: ' + title)
-                # temp = descriptions[1].text.split('\n')[2].split('  / ')
-                # category = temp[0]
-                # subcategory = temp[1]
-                # print("Категория: " + category)
-                # print("Подкатегория: " + subcategory)
-                # temp = descriptions[2].text.split('\n')[2]
-                # articul = temp.replace("/", "_")
-                # print("Артикул: " + articul)
-                # temp = int(descriptions[4].text.split('\n')[2])
-                # print("min height: " + str(temp))
-                # temp = int(descriptions[5].text.split('\n')[2])
-                # print("max height: " + str(temp))
-                # item = Item(title=title,
-                #             category=Category.objects.get_or_create(title=category)[0],
-                #             subcategory=SubCategory.objects.get_or_create(title=subcategory)[0],
-                #             articul=articul,
-                #             price=int(price) * 6.5,
-                #             slug=articul.replace(" ", "_"),
-                #             description1=teh,
-                #             description2=outlook,
-                #             brand=Brand.objects.get_or_create(title='Loft it')[0],
-                #             diameter=diametre,
-                #             height=height,
-                #             min_height=min_height,
-                #             max_height=max_height,
-                # )
-                # # for image in image_urls:
-                # print(image_urls[0])
-                # response = requests.get(image_urls[0])
-                # response.raise_for_status()
-                # item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
-                # item.save()
-                # i = 0
-                # for imag in image_urls:
-                #     i += 1
-                #     if i == 1:
-                #         continue
-                #     try:
-                #         img = ItemImage(post=item)
-                #         response = requests.get(imag)
-                #         response.raise_for_status()
-                #         img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
-                #         img.save()
-                #         print(i)
-                #     except:
-                #         continue
-    #         except:
-    #             print("No Link")
-    #     break
-    # return JsonResponse()
+def create_loftit(request):
+    href = 'https://loftit.ru/'
+    for i in range(1, 2):
+        url = href + "catalog/lyustry/?sp=" + str(i)
+        soup = BeautifulSoup(get(url).text, 'html.parser')
+        responses = soup.find_all('div', class_='items')
+        print(len(responses))
+        for item in responses:
+            link = item.find_all('a')[1].get('href')
+            page = BeautifulSoup(get(href + link).text, 'html.parser')
+            title = page.find('h1').text.strip()
+            print(title)
+            if len(Item.objects.filter(title=title)) > 0:
+                continue
+            price = int(page.find('div', class_='items_price').text.replace(' ', '').replace('\xa0', '').replace('\n',
+                                                                                                                 '').replace(
+                '\t', '').replace('руб.', ''))
+            descriptions = page.find_all('div', class_='col-md-6 hars')
+            teh = ""
+            outlook = ""
+            diametre = 0
+            height = 0
+            max_height = 0
+            min_height = 0
+            for i in descriptions:
+                if i.text.split('\n')[1].startswith('Тип цоколя:'):
+                    teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Лампочки в комплекте:'):
+                    teh+=i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Напряжение питания, В:'):
+                    teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Степень защиты, IP:'):
+                    teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+
+                if i.text.split('\n')[1].startswith('Форма светильника:'):
+                    outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Форма плафона:'):
+                    outlook+=i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Стиль светильника:'):
+                    outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Интерьер:'):
+                    outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                elif i.text.split('\n')[1].startswith('Материал основания:'):
+                    outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                if i.text.split('\n')[1].startswith('Диаметр, мм:'):
+                    diametre = i.text.split('\n')[2]
+                if i.text.split('\n')[1].startswith('Высота, мм:'):
+                    height = i.text.split('\n')[2]
+                if i.text.split('\n')[1].startswith('Высота минимальная, мм:'):
+                    min_height = i.text.split('\n')[2]
+                if i.text.split('\n')[1].startswith('Высота максимальная, мм:'):
+                    max_height = i.text.split('\n')[2]
+            print(teh)
+            print('height: ' + str(height))
+            print('diameter: ' + str(diametre))
+            image_urls = []
+            images = page.find_all('img', class_='img-fluid')
+            for image in images:
+                image_urls.append(href+image['src'])
+            print('Title: ' + title)
+            temp = descriptions[1].text.split('\n')[2].split('  / ')
+            category = temp[0]
+            subcategory = temp[1]
+            print("Категория: " + category)
+            print("Подкатегория: " + subcategory)
+            temp = descriptions[2].text.split('\n')[2]
+            articul = temp.replace("/", "_")
+            print("Артикул: " + articul)
+            temp = int(descriptions[4].text.split('\n')[2])
+            print("min height: " + str(temp))
+            temp = int(descriptions[5].text.split('\n')[2])
+            print("max height: " + str(temp))
+            item = Item(title=title,
+                        category=Category.objects.get_or_create(title=category)[0],
+                        subcategory=SubCategory.objects.get_or_create(title=subcategory)[0],
+                        articul=articul,
+                        price=int(price) * 6.5,
+                        slug=articul.replace(" ", "_"),
+                        description1=teh,
+                        description2=outlook,
+                        brand=Brand.objects.get_or_create(title='Loft it')[0],
+                        diameter=diametre,
+                        height=height,
+                        min_height=min_height,
+                        max_height=max_height,
+            )
+            # for image in image_urls:
+            print(image_urls[0])
+            response = requests.get(image_urls[0])
+            response.raise_for_status()
+            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item.save()
+            i = 0
+            for imag in image_urls:
+                i += 1
+                if i == 1:
+                    continue
+                try:
+                    img = ItemImage(post=item)
+                    response = requests.get(imag)
+                    response.raise_for_status()
+                    img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                    img.save()
+                    print(i)
+                except:
+                    continue
+        break
+    return JsonResponse()
 
 
 # duplicates = Item.objects.values('articul').annotate(count=Count('id')).filter(count__gt=1)
