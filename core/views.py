@@ -267,7 +267,7 @@ def delete_duplicates(request):
 def mir(request):
     'product-grid-item product wd-hover-standard wd-quantity'
     href = 'https://mirparketa.kz'
-    soup = BeautifulSoup(get(href+'/product-category/inzhenernaya-doska/?swoof=1&pa_firma-proizvoditel=kraft-us&really_curr_tax=19-product_cat').text, 'html.parser')
+    soup = BeautifulSoup(get(href+'/firma-proizvoditel/metric-belorussiya/').text, 'html.parser')
     items = soup.find_all('div', class_='product-wrapper')
     for item in items:
         url = item.find('a')['href']
@@ -314,7 +314,7 @@ def mir(request):
             color=Color.objects.get_or_create(title=color)[0],
             category=Category.objects.objects.get_or_create(title='Паркет')[0],
             subcategory=SubCategory.objects.get_or_create(title=design)[0],
-            brand=Brand.objects.get_or_create(title='Kraft')[0],
+            brand=Brand.objects.get_or_create(title='Metric')[0],
             articul=title.split('(')[1].replace(')',''),
             slug=title.split('(')[1].replace(')','').replace('/', '')
         )
