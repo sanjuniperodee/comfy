@@ -267,7 +267,7 @@ def delete_duplicates(request):
 def mir(request):
     'product-grid-item product wd-hover-standard wd-quantity'
     href = 'https://mirparketa.kz'
-    soup = BeautifulSoup(get(href+'/firma-proizvoditel/metric-belorussiya/').text, 'html.parser')
+    soup = BeautifulSoup(get(href+'/firma-proizvoditel/metric-belorussiya/page/2/').text, 'html.parser')
     items = soup.find_all('div', class_='product-wrapper')
     for item in items:
         url = item.find('a')['href']
