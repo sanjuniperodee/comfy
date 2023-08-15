@@ -24,9 +24,14 @@ from django.db.models import Subquery
 def home(request):
     return render(request, 'index.html', {'categories': Category.objects.all()})
 
+# def parket(request):
+#     return render(request, 'parket.html', {'subcategories': SubCategory.objects.filter(is_parket=True)})
+
 def shop(request, ctg, ctg2):
+    subcategory = ctg2
     if ctg2 != 'all':
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
+        subcategory = SubCategory.objects.filter(title=subcategory)[0]
     else:
         object_list = Item.objects.filter(category__title=ctg)
     paginator = Paginator(object_list, 18)
@@ -36,7 +41,10 @@ def shop(request, ctg, ctg2):
     if len(object_list) % 18 > 0:
         pages+=1
     category = Category.objects.filter(title=ctg)[0]
+    print(subcategory)
+    print(123123123)
     context = {
+        'subcategory' : subcategory,
         'categories': Category.objects.all(),
         'brands': Item.objects.filter(category__title=ctg).values('brand__title').distinct(),
         'pages': range(1,pages+1),
@@ -48,10 +56,16 @@ def shop(request, ctg, ctg2):
 
 def detail(request, slug):
     item = Item.objects.filter(slug=slug)[0]
+    try:
+        description1 = item.description1.split('\n')
+        description2 = item.description1.split('\n')
+    except:
+        description1 = ''
+        description2 = ''
     context = {
         'item': item,
-        'description1': item.description1.split('\n'),
-        'description2': item.description2.split('\n'),
+        'description1': description1,
+        'description2': description2,
         'categories': Category.objects.all()
     }
     return render(request, 'detail.html', context)
@@ -248,6 +262,69 @@ def delete_duplicates(request):
 #     for item in Item.objects.all():
 #         item.price = item.price/6.5 * 5.5
 #         item.save()
+
+
+def mir(request):
+    'product-grid-item product wd-hover-standard wd-quantity'
+    href = 'https://mirparketa.kz'
+    soup = BeautifulSoup(get(href+'/product-category/inzhenernaya-doska/?swoof=1&pa_firma-proizvoditel=kraft-us&really_curr_tax=19-product_cat').text, 'html.parser')
+    items = soup.find_all('div', class_='product-wrapper')
+    for item in items:
+        url = item.find('a')['href']
+        print(url)
+        page = BeautifulSoup(get(url).text, 'html.parser')
+        title = page.find('h1').text.strip()
+        print(title)
+        price = page.find('p', class_='price').find('bdi').text.strip()
+        print(price)
+        table = page.find('table').find_all('tr')
+        thickness = length = width = wood = color = selection = decor = design = collection = ''
+        for row in table:
+            key = row.find('span').text.strip()
+            value = row.find('td').text.strip().replace(' мм', '')
+            print(key + ": " + value)
+            if key == 'Толщина':
+                thickness = value
+            if key =='Длина':
+                length = value
+            if key == 'Ширина':
+                width = value
+            if key == 'Порода дерева':
+                wood = value
+            if key == 'Группа цветов':
+                color = value
+            if key == 'Селекция':
+                selection = value
+            if key == 'Декоративная обработка':
+                decor = value
+            if key == 'Тип дизайна':
+                design = value
+            if key == 'Коллекция':
+                collection = value
+        item = Item(
+            title = title,
+            price = price.replace(' ', '').replace(' ', '').replace('₸', ''),
+            thickness = thickness,
+            length = length,
+            width = width,
+            wood_type = wood,
+            selection = selection,
+            decor_obrabotka = decor,
+            collection = collection,
+            color=Color.objects.get_or_create(title=color)[0],
+            category=Category.objects.filter(title='Паркет')[0],
+            subcategory=SubCategory.objects.get_or_create(title=design)[0],
+            brand=Brand.objects.get_or_create(title='Kraft')[0],
+            articul=title.split('(')[1].replace(')',''),
+            slug=title.split('(')[1].replace(')','').replace('/', '')
+        )
+        item.save()
+        image = page.find('div', class_='product-image-wrap').find('img')['src']
+        print(image)
+        response = requests.get(image)
+        response.raise_for_status()
+        item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+        item.save()
 
 
 def create(request):
@@ -491,8 +568,121 @@ def create_loftit(request):
                         continue
             except:
                 continue
-        break
     return JsonResponse()
+
+def create_greenline(request):
+    href = 'https://odeon-light.com/'
+    for i in range(1, 9):
+
+        url = href + "catalog/odeon_light/lyustra_podvesnaya/?PAGEN_1=" + str(i)
+        soup = BeautifulSoup(get(url).text, 'html.parser')
+        responses = soup.find_all('div', class_='items')
+        print(len(responses))
+        for item in responses:
+            link = item.find_all('a')[1].get('href')
+            page = BeautifulSoup(get(href + link).text, 'html.parser')
+            title = page.find('h1').text.strip()
+            print(title)
+            if len(Item.objects.filter(title=title)) > 0:
+                continue
+            try:
+                price = int(
+                    page.find('div', class_='items_price').text.replace(' ', '').replace('\xa0', '').replace('\n',
+                                                                                                             '').replace(
+                        '\t', '').replace('руб.', ''))
+                descriptions = page.find_all('div', class_='col-md-6 hars')
+                teh = ""
+                outlook = ""
+                diametre = 0
+                height = 0
+                max_height = 0
+                min_height = 0
+                for i in descriptions:
+                    if i.text.split('\n')[1].startswith('Тип цоколя:'):
+                        teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Лампочки в комплекте:'):
+                        teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Напряжение питания, В:'):
+                        teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Степень защиты, IP:'):
+                        teh += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+
+                    if i.text.split('\n')[1].startswith('Форма светильника:'):
+                        outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Форма плафона:'):
+                        outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Стиль светильника:'):
+                        outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Интерьер:'):
+                        outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    elif i.text.split('\n')[1].startswith('Материал основания:'):
+                        outlook += i.text.split('\n')[1] + " " + i.text.split('\n')[2] + '\n'
+                    if i.text.split('\n')[1].startswith('Диаметр, мм:'):
+                        diametre = i.text.split('\n')[2]
+                    if i.text.split('\n')[1].startswith('Высота, мм:'):
+                        height = i.text.split('\n')[2]
+                    if i.text.split('\n')[1].startswith('Высота минимальная, мм:'):
+                        min_height = i.text.split('\n')[2]
+                    if i.text.split('\n')[1].startswith('Высота максимальная, мм:'):
+                        max_height = i.text.split('\n')[2]
+                print(teh)
+                print('height: ' + str(height))
+                print('diameter: ' + str(diametre))
+                image_urls = []
+                images = page.find_all('img', class_='img-fluid')
+                for image in images:
+                    image_urls.append(href + image['src'])
+                print('Title: ' + title)
+                temp = descriptions[1].text.split('\n')[2].split('  / ')
+                category = temp[0]
+                subcategory = temp[1]
+                print("Категория: " + category)
+                print("Подкатегория: " + subcategory)
+                temp = descriptions[2].text.split('\n')[2]
+                articul = temp.replace("/", "_")
+                print("Артикул: " + articul)
+                temp = int(descriptions[4].text.split('\n')[2])
+                print("min height: " + str(temp))
+                temp = int(descriptions[5].text.split('\n')[2])
+                print("max height: " + str(temp))
+                item = Item(title=title,
+                            category=Category.objects.get_or_create(title=category)[0],
+                            subcategory=SubCategory.objects.get_or_create(title=subcategory)[0],
+                            articul=articul,
+                            price=int(price) * 6.5,
+                            slug=articul.replace(" ", "_"),
+                            description1=teh,
+                            description2=outlook,
+                            brand=Brand.objects.get_or_create(title='Loft it')[0],
+                            diameter=diametre,
+                            height=height,
+                            min_height=min_height,
+                            max_height=max_height,
+                            )
+                # for image in image_urls:
+                print(image_urls[0])
+                response = requests.get(image_urls[0])
+                response.raise_for_status()
+                item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                item.save()
+                i = 0
+                for imag in image_urls:
+                    i += 1
+                    if i == 1:
+                        continue
+                    try:
+                        img = ItemImage(post=item)
+                        response = requests.get(imag)
+                        response.raise_for_status()
+                        img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                        img.save()
+                        print(i)
+                    except:
+                        continue
+            except:
+                continue
+    return JsonResponse()
+
 
 
 # duplicates = Item.objects.values('articul').annotate(count=Count('id')).filter(count__gt=1)

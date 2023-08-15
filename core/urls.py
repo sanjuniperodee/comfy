@@ -18,6 +18,7 @@ urlpatterns = [
     path('delete_duplicates', delete_duplicates, name='delete_duplicates'),
     path('create', create, name='create'),
     path('create_loftit', create_loftit, name='create_loftit'),
+    path('create_greenline', create_greenline, name='create_greenline'),
     path('sales', sales, name='sales'),
-    # path('price', change_prices, name='price')
+    path('mir', mir, name='mir')
 ]

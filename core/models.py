@@ -13,6 +13,8 @@ class Brand(models.Model):
         return self.title
 class SubCategory(models.Model):
     title = models.CharField(max_length=225)
+    image = models.ImageField(null=True)
+    is_parket = models.BooleanField(default=False, null=True, blank=True)
     def __str__(self):
         return self.title
 
@@ -35,6 +37,7 @@ class Color(models.Model):
     title = models.CharField(max_length=100,null=True, blank=True)
     encode = models.CharField(max_length=100,null=True, blank=True)
 
+
 class Item(models.Model):
     title = models.CharField(max_length=100)
     price = models.FloatField(null=True, blank=True)
@@ -44,6 +47,13 @@ class Item(models.Model):
     length = models.FloatField(null=True, blank=True)
     width = models.FloatField(null=True, blank=True)
     diameter = models.FloatField(null=True, blank=True)
+    thickness = models.FloatField(null=True, blank=True)
+    wood_type = models.CharField(max_length = 256,null=True, blank=True)
+    faska = models.CharField(max_length = 256,null=True, blank=True)
+    selection = models.CharField(max_length = 256,null=True, blank=True)
+    collection = models.CharField(max_length = 256,null=True, blank=True)
+    design = models.CharField(max_length = 256,null=True, blank=True)
+    decor_obrabotka = models.CharField(max_length=256, null=True, blank=True)
     color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)

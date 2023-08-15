@@ -38,8 +38,13 @@
 
     <div class="site-section">
       <div class="container">
-
+      {% if subcategory != 'all' and subcategory.is_parket %}
+        <div class="coll-md-12 mb-5" style="background: url({{ subcategory.image.url }}); height: 100px; text-align: center;">
+            <h1 class="text-light">{{ category.title }}</h1>
+        </div>
+      {% endif %}
         <div class="row mb-5">
+
           <div class="col-md-9 order-2">
 
             <div class="row">
