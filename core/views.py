@@ -263,6 +263,72 @@ def delete_duplicates(request):
 #         item.price = item.price/6.5 * 5.5
 #         item.save()
 
+def decor(request):
+    href = 'https://decorkz.kz'
+    for i in range(1,6):
+        soup = BeautifulSoup(get(href + '/products?alias=karnizy&page=5=' + str(i)).text, 'html.parser')
+        items = soup.find_all('a', class_="h3 pt-1 stretched-link")
+        for item in items:
+            print(href+item['href'])
+            page = BeautifulSoup(get(href + item['href']).text, 'html.parser')
+            title = page.find('h1', class_='h2').text.strip()
+            print(title)
+            parameters = page.find('div', class_='infoBlock').find_all('li')
+            price = 0
+            for row in parameters:
+                print(row.text)
+                key = row.find_all('span')[0].text.strip()
+                value = row.find_all('span')[1].text.strip()
+                print(key + ": " + value)
+                if key == 'Ширина':
+                    width = value
+                if key == 'Высота':
+                    height = value
+                if key == 'Диагональ':
+                    diameter = value
+                if key == 'Материал':
+                    wood = value
+                if key == 'Длина':
+                    length = value
+                if key == 'Производитель':
+                    brand = value
+                if key == 'Вложение в коробке':
+                    description = key + ": " + value + '\n'
+            price = page.find('span', class_='infoNumb price pl-3').text.strip().replace('тг', '')
+            print(price)
+            item = Item(
+                title=title,
+                length = length.replace('мм', ''),
+                brand = Brand.objects.get_or_create(title=brand)[0],
+                description1 = description,
+                price = price,
+                width = width.replace('мм', ''),
+                height = height.replace('мм', ''),
+                diameter = diameter.replace('мм', ''),
+                wood_type = wood,
+                category = Category.objects.get_or_create(title='Декор для стен')[0],
+                subcategory = SubCategory.objects.get_or_create(title='Карнизы из HDPS и дюрополимера')[0],
+                slug = title.replace(' ', '_'),
+                articul= title
+            )
+            image = page.find('img', class_='imgProd imgResponsive')['src']
+            print(image)
+            response = requests.get(href+image)
+            response.raise_for_status()
+            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item.save()
+            images = page.find_all('img', class_="imgResponsive imgMini")
+            print(len(images))
+            for imag in images:
+                try:
+                    img = ItemImage(post=item)
+                    response = requests.get(href+imag['src'])
+                    response.raise_for_status()
+                    img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                    img.save()
+                except:
+                    continue
+
 
 def mir(request):
     'product-grid-item product wd-hover-standard wd-quantity'

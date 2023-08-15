@@ -20,5 +20,6 @@ urlpatterns = [
     path('create_loftit', create_loftit, name='create_loftit'),
     path('create_greenline', create_greenline, name='create_greenline'),
     path('sales', sales, name='sales'),
-    path('mir', mir, name='mir')
+    path('mir', mir, name='mir'),
+    path('decor', decor, name='decor')
 ]
