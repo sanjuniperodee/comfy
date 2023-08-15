@@ -312,7 +312,7 @@ def mir(request):
             decor_obrabotka = decor,
             collection = collection,
             color=Color.objects.get_or_create(title=color)[0],
-            category=Category.objects.filter(title='Паркет')[0],
+            category=Category.objects.objects.get_or_create(title='Паркет')[0],
             subcategory=SubCategory.objects.get_or_create(title=design)[0],
             brand=Brand.objects.get_or_create(title='Kraft')[0],
             articul=title.split('(')[1].replace(')',''),
