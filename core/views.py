@@ -274,7 +274,7 @@ def decor(request):
             title = page.find('h1', class_='h2').text.strip()
             print(title)
             parameters = page.find('div', class_='infoBlock').find_all('li')
-            price = length = height = ''
+            price = length = height = width = '0'
             for row in parameters:
                 print(row.text)
                 key = row.find_all('span')[0].text.strip()
