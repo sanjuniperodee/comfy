@@ -307,7 +307,7 @@ def decor(request):
                 # diameter = int(diameter.replace('мм', '')),
                 wood_type = wood,
                 category = Category.objects.get_or_create(title='Декор для стен')[0],
-                subcategory = SubCategory.objects.get_or_create(title='Молдинг')[0],
+                subcategory = SubCategory.objects.get_or_create(title='Плинтуса')[0],
                 slug = title.replace(' ', '_'),
                 articul= title
             )
