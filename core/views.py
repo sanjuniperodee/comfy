@@ -266,7 +266,7 @@ def delete_duplicates(request):
 def decor(request):
     href = 'https://decorkz.kz'
     for i in range(1,6):
-        soup = BeautifulSoup(get(href + '/products?alias=plintusy&page=' + str(i)).text, 'html.parser')
+        soup = BeautifulSoup(get(href + '/products?alias=Panels+I&page=' + str(i)).text, 'html.parser')
         items = soup.find_all('a', class_="h3 pt-1 stretched-link")
         for item in items:
             print(href+item['href'])
@@ -274,7 +274,7 @@ def decor(request):
             title = page.find('h1', class_='h2').text.strip()
             print(title)
             parameters = page.find('div', class_='infoBlock').find_all('li')
-            price = diameter = ''
+            price = length = height = ''
             for row in parameters:
                 print(row.text)
                 key = row.find_all('span')[0].text.strip()
@@ -284,8 +284,6 @@ def decor(request):
                     width = value
                 if key == 'Высота':
                     height = value
-                if key == 'Диагональ':
-                    diameter = value
                 if key == 'Материал':
                     wood = value
                 if key == 'Длина':
@@ -307,7 +305,7 @@ def decor(request):
                 # diameter = int(diameter.replace('мм', '')),
                 wood_type = wood,
                 category = Category.objects.get_or_create(title='Декор для стен')[0],
-                subcategory = SubCategory.objects.get_or_create(title='Плинтуса')[0],
+                subcategory = SubCategory.objects.get_or_create(title='Панели и решетки')[0],
                 slug = title.replace(' ', '_'),
                 articul= title
             )
