@@ -265,7 +265,7 @@ def delete_duplicates(request):
 
 def alpin(request):
     href = 'https://alpinefloor.su'
-    soup = BeautifulSoup(get(href + '/catalog/spc-laminat/kollektsii-af-spc/light-parquet/').text, 'html.parser')
+    soup = BeautifulSoup(get(href + '/catalog/spc-laminat/kollektsii-af-spc/grand-sequoia/').text, 'html.parser')
     items = soup.find_all('a', class_='link-preset product-tile__detail')
     for item in items:
         page = BeautifulSoup(get(href+item['href']).text, 'html.parser')
@@ -301,7 +301,7 @@ def alpin(request):
             faska = faska,
             description1= description,
             category = Category.objects.get_or_create(title='SPC')[0],
-            subcategory = SubCategory.objects.get_or_create(title='PARQUET LIGHT')[0],
+            subcategory = SubCategory.objects.get_or_create(title='GRAND SEQUOIA')[0],
             brand = Brand.objects.get_or_create(title='Apline Floor')[0],
             articul = articul,
             slug = articul.replace(' ', '_')
