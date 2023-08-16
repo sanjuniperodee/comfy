@@ -456,7 +456,7 @@ def mir(request):
 
 def create(request):
     href = 'https://newport-shop.ru'
-    for i in range(11, 36):
+    for i in range(1, 36):
         url = href + "/catalog/podvesnye_svetilniki/?PAGEN_1=" + str(i)
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
