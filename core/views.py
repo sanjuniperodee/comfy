@@ -265,8 +265,8 @@ def delete_duplicates(request):
 
 def decor(request):
     href = 'https://decorkz.kz'
-    for i in range(1,6):
-        soup = BeautifulSoup(get(href + '/products?alias=karnizy&page=' + str(i)).text, 'html.parser')
+    for i in range(1,16):
+        soup = BeautifulSoup(get(href + '/products?alias=moldingi&page=' + str(i)).text, 'html.parser')
         items = soup.find_all('a', class_="h3 pt-1 stretched-link")
         for item in items:
             print(href+item['href'])
@@ -307,7 +307,7 @@ def decor(request):
                 diameter = diameter.replace('мм', ''),
                 wood_type = wood,
                 category = Category.objects.get_or_create(title='Декор для стен')[0],
-                subcategory = SubCategory.objects.get_or_create(title='Карнизы из HDPS и дюрополимера')[0],
+                subcategory = SubCategory.objects.get_or_create(title='Молдинг')[0],
                 slug = title.replace(' ', '_'),
                 articul= title
             )
