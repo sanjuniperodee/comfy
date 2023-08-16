@@ -129,7 +129,9 @@
 <div class="row" style="padding: 0 10%; margin: 0">
     {% for item in bests %}
     <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
-        <img src="{{ item.image.url }}" width="100%">
+    <div style="position: relative; background: url('{{ item.image.url }}'); background-size: contain; height: 300px">
+        <img src="{% static 'img/best_price.png' %}" height="50px">
+    </div>
         <div><a>{{ item.title }}</a> <img></div>
         <div>{{ item.price }}тг </div>
         <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
