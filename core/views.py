@@ -274,7 +274,7 @@ def decor(request):
             title = page.find('h1', class_='h2').text.strip()
             print(title)
             parameters = page.find('div', class_='infoBlock').find_all('li')
-            price = 0
+            price = diameter = ''
             for row in parameters:
                 print(row.text)
                 key = row.find_all('span')[0].text.strip()
@@ -295,27 +295,28 @@ def decor(request):
                 if key == 'Вложение в коробке':
                     description = key + ": " + value + '\n'
             price = page.find('span', class_='infoNumb price pl-3').text.strip().replace('тг', '')
-            print(price)
+            print(int(price))
             item = Item(
                 title=title,
                 length = length.replace('мм', ''),
                 brand = Brand.objects.get_or_create(title=brand)[0],
                 description1 = description,
                 price = price,
-                width = width.replace('мм', ''),
-                height = height.replace('мм', ''),
-                diameter = diameter.replace('мм', ''),
+                width = int(width.replace('мм', '')),
+                height = int(height.replace('мм', '')),
+                # diameter = int(diameter.replace('мм', '')),
                 wood_type = wood,
                 category = Category.objects.get_or_create(title='Декор для стен')[0],
                 subcategory = SubCategory.objects.get_or_create(title='Молдинг')[0],
                 slug = title.replace(' ', '_'),
                 articul= title
             )
+            item.save()
             image = page.find('img', class_='imgProd imgResponsive')['src']
-            print(image)
+            print(href+image)
             response = requests.get(href+image)
             response.raise_for_status()
-            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item.image.save("ff12.jpg", ContentFile(response.content), save=True)
             item.save()
             images = page.find_all('img', class_="imgResponsive imgMini")
             print(len(images))
