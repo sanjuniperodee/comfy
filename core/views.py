@@ -266,7 +266,7 @@ def delete_duplicates(request):
 def decor(request):
     href = 'https://decorkz.kz'
     for i in range(1,6):
-        soup = BeautifulSoup(get(href + '/products?alias=karnizy&page=5=' + str(i)).text, 'html.parser')
+        soup = BeautifulSoup(get(href + '/products?alias=karnizy&page=' + str(i)).text, 'html.parser')
         items = soup.find_all('a', class_="h3 pt-1 stretched-link")
         for item in items:
             print(href+item['href'])
