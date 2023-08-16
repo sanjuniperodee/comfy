@@ -59,7 +59,7 @@ def detail(request, slug):
     item = Item.objects.filter(slug=slug)[0]
     try:
         description1 = item.description1.split('\n')
-        description2 = item.description1.split('\n')
+        description2 = item.description2.split('\n')
     except:
         description1 = ''
         description2 = ''
