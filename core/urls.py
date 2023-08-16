@@ -21,5 +21,6 @@ urlpatterns = [
     path('create_greenline', create_greenline, name='create_greenline'),
     path('sales', sales, name='sales'),
     path('mir', mir, name='mir'),
-    path('decor', decor, name='decor')
+    path('decor', decor, name='decor'),
+    path('alpin', alpin, name='alpin')
 ]

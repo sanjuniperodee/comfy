@@ -263,6 +263,68 @@ def delete_duplicates(request):
 #         item.price = item.price/6.5 * 5.5
 #         item.save()
 
+def alpin(request):
+    href = 'https://alpinefloor.su'
+    soup = BeautifulSoup(get(href + '/catalog/spc-laminat/kollektsii-af-spc/light-parquet/').text, 'html.parser')
+    items = soup.find_all('a', class_='link-preset product-tile__detail')
+    for item in items:
+        page = BeautifulSoup(get(href+item['href']).text, 'html.parser')
+        title = page.find('h1', class_='h1 item-detail__header').text
+        print(title)
+        price =page.find('div', class_='item-detail-price__value').text.strip().split(' ь')[0].replace(' ', '')
+        print(price)
+        table = page.find('table', class_='table chars-table').find_all('tr')
+        for row in table:
+            print(row.text.strip())
+            key = row.text.strip().split('\n')[0]
+            value = row.text.strip().split('\n')[1]
+            description=''
+            print(key + ": " + value)
+            if key == 'Длина, мм':
+                length = value
+            elif key == 'Ширина, мм':
+                width = value
+            elif key == 'Толщина, мм':
+                thickness = value
+            elif key == 'Микрофаска':
+                faska = value
+            else :
+                description+= key + ": " + value + '\n'
+        articul = page.find('span', class_='item-detail-class__name').text
+        print(articul)
+        item = Item(
+            title=title,
+            price = price,
+            length = length,
+            width = width,
+            thickness = thickness,
+            faska = faska,
+            description1= description,
+            category = Category.objects.get_or_create(title='SPC')[0],
+            subcategory = SubCategory.objects.get_or_create(title='PARQUET LIGHT')[0],
+            brand = Brand.objects.get_or_create(title='Apline Floor')[0],
+            articul = articul,
+            slug = articul.replace(' ', '_')
+        )
+        image = page.find('a', class_='link-preset item-detail-slide-img-wrap icon icon_search')['href']
+        print(href + image)
+        response = requests.get(href + image)
+        response.raise_for_status()
+        item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+        item.save()
+        images = page.find_all('img', class_="imgResponsive imgMini")
+        print(len(images))
+        for imag in images:
+            try:
+                img = ItemImage(post=item)
+                response = requests.get(href + imag['src'])
+                response.raise_for_status()
+                img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                img.save()
+            except:
+                continue
+
+
 def decor(request):
     href = 'https://decorkz.kz'
     for i in range(1,6):
@@ -314,7 +376,7 @@ def decor(request):
             print(href+image)
             response = requests.get(href+image)
             response.raise_for_status()
-            item.image.save("ff12.jpg", ContentFile(response.content), save=True)
+            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
             item.save()
             images = page.find_all('img', class_="imgResponsive imgMini")
             print(len(images))
