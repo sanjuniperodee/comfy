@@ -22,7 +22,8 @@ from django.db.models import Subquery
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def home(request):
-    return render(request, 'index.html', {'categories': Category.objects.all()})
+    bests = Item.objects.filter(collection='EXTRA')
+    return render(request, 'index.html', {'categories': Category.objects.all(), 'bests': bests})
 
 # def parket(request):
 #     return render(request, 'parket.html', {'subcategories': SubCategory.objects.filter(is_parket=True)})
@@ -262,6 +263,25 @@ def delete_duplicates(request):
 #     for item in Item.objects.all():
 #         item.price = item.price/6.5 * 5.5
 #         item.save()
+
+def greenline(request):
+    href = 'https://parket-greenline.ru'
+    soup = BeautifulSoup(get(href+'/products/inzhenernaya-doska/smart/').text, 'html.parser')
+    items = soup.find_all('div', class_='item_4')
+    for item in items:
+        page = BeautifulSoup(get(href+item.find('a')['href']).text, 'html.parser')
+        print(href+'/products/inzhenernaya-doska/smart'+item.find('a')['href'])
+        title = page.find('h1', class_='bx-title').text.strip()
+        print(title)
+        table = page.find('dl', class_='product-item-detail-properties')
+        for row in table:
+            value = row.find('dt').text
+            key = row.find('dd').text
+            if key == 'Коллекция':
+                collection = key
+            # if key == 'Декор':
+
+        break
 
 def alpin(request):
     href = 'https://alpinefloor.su'

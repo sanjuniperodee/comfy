@@ -125,40 +125,18 @@
 {#    #75AB30, #75AB30#}
 </div>
 
-<h2 style="width: 100%; text-align: center; color: black; margin-top: 10%">Распродажа</h2>
+<h2 style="width: 100%; text-align: center; color: black; margin-top: 10%">Лучшая цена</h2>
 <div class="row" style="padding: 0 10%; margin: 0">
+    {% for item in bests %}
     <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
-        <img src="{% static 'img/test.jpg' %}" width="100%">
-        <div><a>Maytoni House H311</a> <img></div>
-        <div>95 590тг </div>
+        <img src="{{ item.image.url }}" width="100%">
+        <div><a>{{ item.title }}</a> <img></div>
+        <div>{{ item.price }}тг </div>
         <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
            <a>Купить</a>
         </div>
     </div>
-    <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
-        <img src="{% static 'img/test.jpg' %}" width="100%">
-        <div><a>Maytoni House H311</a> <img></div>
-        <div>95 590тг </div>
-        <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
-           <a>Купить</a>
-        </div>
-    </div>
-    <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
-        <img src="{% static 'img/test.jpg' %}" width="100%">
-        <div><a>Maytoni House H311</a> <img></div>
-        <div>95 590тг </div>
-        <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
-           <a>Купить</a>
-        </div>
-    </div>
-    <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
-        <img src="{% static 'img/test.jpg' %}" width="100%">
-        <div><a>Maytoni House H311</a> <img></div>
-        <div>95 590тг </div>
-        <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
-           <a>Купить</a>
-        </div>
-    </div>
+    {% endfor %}
     </div>
 </div>
 <div style="margin-top: 400px; position: absolute">

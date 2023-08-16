@@ -22,5 +22,6 @@ urlpatterns = [
     path('sales', sales, name='sales'),
     path('mir', mir, name='mir'),
     path('decor', decor, name='decor'),
-    path('alpin', alpin, name='alpin')
+    path('alpin', alpin, name='alpin'),
+    path('greenline', greenline, name='greenline')
 ]
