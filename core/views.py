@@ -736,9 +736,9 @@ def create_greenline(request):
             page = BeautifulSoup(get(href + link + sec).text, 'html.parser')
             title = page.find('div', class_='title-H1').text.strip()
             print(title)
-            # if len(Item.objects.filter(title=title)) > 0:
-            #     continue
-            price = page.find_all('b')[6].text.replace(' ', '').replace('руб.', '')
+            if len(Item.objects.filter(title=title)) > 0:
+                continue
+            price = item.find_all('b')[1].text.replace(' ', '').replace('руб.', '')
             print(price)
             print(int(price))
             tables = page.find_all('div', class_='detail-product__text')
@@ -768,7 +768,7 @@ def create_greenline(request):
                 if flag:
                     break
             item = Item(title = title,
-                        price = price,
+                        price = int(price) * 5.5,
                         articul = articul,
                         diameter = diameter,
                         height = height,
