@@ -723,8 +723,8 @@ def create_loftit(request):
 def create_greenline(request):
     href = 'https://odeon-light.com'
     sec = '?utm_source=&utm_medium=captcha_byazrov&utm_campaign=captcha&utm_referrer='
-    for i in range(1, 7):
-        url = href + "/catalog/odeon_light/lyustra_podvesnaya/?PAGEN_1=" + str(i) + sec
+    for i in range(1, 3):
+        url = href + "/catalog/odeon_light/lyustra_potolochnaya/?PAGEN_1=" + str(i) + sec
         # url = 'https://odeon-light.com/catalog/odeon_light/lyustra_podvesnaya/?PAGEN_1=1'
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
@@ -745,12 +745,16 @@ def create_greenline(request):
             description = ''
             description2 = page.find('div', class_='diin').text.strip()
             print(description2)
+            articul = diameter = height = width = '0'
             articul = ''
             for table in tables:
                 flag = False
                 for row in table.find_all('div'):
-                    value = row.text.strip().split('\n')[1].strip()
-                    key = row.text.strip().split('\n')[0].strip()
+                    try:
+                        value = row.text.strip().split('\n')[1].strip()
+                        key = row.text.strip().split('\n')[0].strip()
+                    except:
+                        continue
                     print(key + ": " + value)
                     if key == 'Артикул':
                         if len(articul) > 0:
