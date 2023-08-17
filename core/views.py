@@ -781,7 +781,7 @@ def create_greenline(request):
                         description2 = description2,
                         slug = articul.replace(' ', '').replace('/', ''),
                         category = Category.objects.get_or_create(title = 'Люстры')[0],
-                        subcategory = SubCategory.objects.get_or_create(title = 'Подвесные люстры')[0],
+                        subcategory = SubCategory.objects.get_or_create(title = 'Потолочные люстры')[0],
                         brand = Brand.objects.get_or_create(title = 'Odeon Light')[0]
                         )
             images = page.find('div', class_='product-images__large').find_all('a')
