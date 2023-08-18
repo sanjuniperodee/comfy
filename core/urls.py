@@ -23,5 +23,6 @@ urlpatterns = [
     path('mir', mir, name='mir'),
     path('decor', decor, name='decor'),
     path('alpin', alpin, name='alpin'),
-    path('greenline', greenline, name='greenline')
+    path('greenline', greenline, name='greenline'),
+    path('create_maytoni', create_maytoni, name='create_maytoni')
 ]
