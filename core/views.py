@@ -472,8 +472,8 @@ def mir(request):
         item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
         item.save()
 
-def create_maytoni(request):
-    href = 'https://maytoni.r'
+def create_maytoni_bra(request):
+    href = 'https://maytoni.ru'
     for i in range(1, 3):
         url = href + "/catalog/decorative/torshery/?PAGEN_1=" + str(i)
         print(url)
