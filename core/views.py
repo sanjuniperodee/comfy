@@ -412,7 +412,6 @@ def decor(request):
 
 
 def mir(request):
-    'product-grid-item product wd-hover-standard wd-quantity'
     href = 'https://mirparketa.kz'
     soup = BeautifulSoup(get(href+'/product-category/parket/?swoof=1&pa_firma-proizvoditel=kraft-us&really_curr_tax=18-product_cat').text, 'html.parser')
     items = soup.find_all('div', class_='product-wrapper')
@@ -473,6 +472,90 @@ def mir(request):
         item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
         item.save()
 
+def create_maytoni(request):
+    href = 'https://maytoni.ru'
+    for i in range(1, 14):
+        url = href + "/catalog/decorative/podvesy/?PAGEN_1=" + str(i)
+        print(url)
+        soup = BeautifulSoup(get(url).text, 'html.parser')
+        products = soup.find_all('a', class_='catalog-card__link')
+        print(len(products))
+        for item in products:
+            print(href+item['href'])
+            page = BeautifulSoup(get(href + item['href']).text + str(i))
+            title = page.find('h1', class_='page-header').text.strip()
+            teh = ""
+            vnesh = ""
+            height = width = length = diameter = 0
+            fields = page.find_all('div', class_='characteristic-list__item')
+            for field in fields:
+                key = field.find_all('div')[0].text.strip()
+                value = re.sub(r'\s+', ' ', field.find_all('div')[1].text.strip())
+                if key == 'Артикул':
+                    articul = value
+                if key == 'Диаметр':
+                    diameter = value.split(' ')[0]
+                if key == 'Источник света' or key == 'Количество ламп' or key == 'Защита IP' or key == 'Диммируемые' or key == 'Напряжение' or key == 'Мощность':
+                    teh += key + ': ' + value + '\n'
+                if key == 'Цвет арматуры' or key == 'Материал арматуры':
+                    vnesh += key + ': ' + value + '\n'
+                if key == 'Высота':
+                    height = value.split(' ')[0]
+                if key == 'Ширина':
+                    width = value.split(' ')[0]
+                if key == 'Длина':
+                    length = value.split(' ')[0]
+            print(height)
+            price = page.find('span', class_='price').text.replace(' ', '').replace('₽', '')
+            print(price)
+            print(teh)
+            print(vnesh)
+            images = page.find_all('div', class_='product-card__thumbs-item')
+            image_urls = []
+            for image in images:
+                image_urls.append(href+image.find('img')['src'])
+            print(str(image_urls))
+            item = Item(title=title + " " + articul,
+                        category=Category.objects.get_or_create(title='Люстры')[0],
+                        subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
+                        articul=articul,
+                        price=int(price) * 6.5,
+                        slug=articul.replace(" ", "_"),
+                        description1=teh,
+                        description2=vnesh,
+                        brand=Brand.objects.get_or_create(title='Maytoni')[0],
+                        height=height,
+                        length=length,
+                        width=width,
+                        diameter=diameter
+            )
+            images = page.find_all('div', class_='product-card__thumbs-item')
+            image_urls = []
+            for image in images:
+                print()
+                image_urls.append(href+image.find('img')['src'].replace('40_40_0/', '').replace('resize_cache/', ''))
+            print(image_urls[0])
+            print(href+images[0].find('img')['src'])
+            response = requests.get(image_urls[0])
+            response.raise_for_status()
+            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item.save()
+            i = 0
+            for imag in ItemImage.objects.filter(post=item):
+                imag.delete()
+            for imag in image_urls:
+                i += 1
+                if i == 1:
+                    continue
+                try:
+                    img = ItemImage(post=item)
+                    response = requests.get(imag)
+                    response.raise_for_status()
+                    img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                    img.save()
+                    print(i)
+                except:
+                    continue
 
 def create_maytoni(requeset):
     href = 'https://maytoni.ru'
