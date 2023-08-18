@@ -473,7 +473,7 @@ def mir(request):
         item.save()
 
 def create_maytoni(request):
-    href = 'https://maytoni.ru'
+    href = 'https://maytoni.r'
     for i in range(1, 3):
         url = href + "/catalog/decorative/torshery/?PAGEN_1=" + str(i)
         print(url)
