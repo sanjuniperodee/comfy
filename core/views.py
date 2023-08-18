@@ -474,8 +474,8 @@ def mir(request):
 
 def create_maytoni(request):
     href = 'https://maytoni.ru'
-    for i in range(1, 14):
-        url = href + "/catalog/decorative/podvesy/?PAGEN_1=" + str(i)
+    for i in range(1, 3):
+        url = href + "/catalog/decorative/torshery/?PAGEN_1=" + str(i)
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         products = soup.find_all('a', class_='catalog-card__link')
@@ -516,10 +516,10 @@ def create_maytoni(request):
                 image_urls.append(href+image.find('img')['src'])
             print(str(image_urls))
             item = Item(title=title + " " + articul,
-                        category=Category.objects.get_or_create(title='Люстры')[0],
-                        subcategory=SubCategory.objects.get_or_create(title='Потолочные люстры')[0],
+                        category=Category.objects.get_or_create(title='Торшеры')[0],
+                        subcategory=SubCategory.objects.get_or_create(title='Напольные светильники')[0],
                         articul=articul,
-                        price=int(price) * 6.5,
+                        price=int(price) * 5.5,
                         slug=articul.replace(" ", "_"),
                         description1=teh,
                         description2=vnesh,
