@@ -475,7 +475,7 @@ def mir(request):
 def create_mayto(request):
     href = 'https://maytoni.ru'
     for i in range(1, 2):
-        url = href + "/catalog/functional/trekovye-sistemy/magnitnaya-trekovaya-sistema-gravity/?SHOWALL=1#product_23"
+        url = href + "/catalog/functional/trekovye-sistemy/magnitnaya-trekovaya-sistema-exility/?PAGEN_1=5"
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         products = soup.find_all('a', class_='catalog-card__link')
@@ -484,6 +484,8 @@ def create_mayto(request):
             print(href+item['href'])
             page = BeautifulSoup(get(href + item['href']).text)
             title = page.find('h1', class_='page-header').text.strip()
+            if len(Item.objects.filter(title=title)) > 0:
+                continue
             teh = ""
             vnesh = ""
             height = width = length = diameter = 0
@@ -521,7 +523,7 @@ def create_mayto(request):
                         category=Category.objects.get_or_create(title='Трековые системы')[0],
                         subcategory=SubCategory.objects.get_or_create(title=type)[0],
                         articul=articul,
-                        collection='Магнитная трековая система GRAVITY',
+                        collection='Магнитная трековая система EXILITY',
                         price=int(price) * 5.5,
                         slug=articul.replace(" ", "_"),
                         description1=teh,
@@ -537,8 +539,11 @@ def create_mayto(request):
             for image in images:
                 print()
                 image_urls.append(href+image.find('img')['src'].replace('40_40_0/', '').replace('resize_cache/', ''))
-            print(image_urls[0])
-            print(href+images[0].find('img')['src'])
+            try:
+                print(image_urls[0])
+            except:
+                image_urls.append(href+page.find('div', class_='product-card__img-img').find('img')['src'])
+            print(href+image_urls[0])
             response = requests.get(image_urls[0])
             response.raise_for_status()
             item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
