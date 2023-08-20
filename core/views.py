@@ -1046,3 +1046,81 @@ def copy(request):
         item1.title = item.title
         item1.price = item.price
         item1.save()
+
+
+def st_luce(request):
+    href = 'https://stluce.ru/'
+    for i in range(1, 31):
+        soup = BeautifulSoup(get(href + '/catalog/st_luce/filter/tip_svetilnika-is-5d7c9d7a-2caa-11e6-80cf-001dd8b75054-or-bf7cc4ce-2caa-11e6-80cf-001dd8b75054/apply/?BY=asc&PAGEN_1=' + str(i)).text, 'html.parser')
+        items = soup.find_all('div', class_='catalog-container-thumb-photo')
+        for item in items:
+            # print(item)
+            page = BeautifulSoup(get(href+item.find_all('a')[-1]['href']).text, 'html.parser')
+            print(href+item.find('a')['href'])
+            title = page.find('div', class_='title-page title-page-no-bord').text.strip()
+            price = page.find_all('div', class_='price')[1].text.strip().replace(' руб.', '').replace(' ', '')
+            print(title + ": " + price)
+            table = page.find_all('div', class_='product-description_characteristics')[1]
+            height = diameter = width = length = min_height = max_length = 0
+            description = ''
+            for row in table.find_all('li'):
+                # print(row)
+                key = row.find_all('span')[0].text.strip()
+                value = row.find_all('span')[1].text.strip()
+                if value == 'Люстра подвесная':
+                    type = 'Подвесные люстры'
+
+                elif value == 'Люстра потолочная':
+                    type = 'Потолочные люстры'
+
+                elif key == 'Артикул':
+                    articul = value
+                elif key == 'Высота,мм':
+                    height = value
+                elif key == 'Длинна,мм':
+                    height = value
+                elif key == 'Диаметр,мм':
+                    diameter = value
+                elif key == 'Высота max,мм':
+                    max_height = value
+                elif key == 'Ширина,мм':
+                    width = value
+                elif key == 'Высота min,мм':
+                    min_height = value
+                else:
+                    description += key + ": " + value + '\n'
+            item = Item(
+                title=title,
+                price=int(price)*5.5,
+                articul=articul,
+                slug=articul.replace(' ', '').replace('.', '').replace('/', ''),
+                height=height,
+                length = length,
+                diameter=diameter,
+                max_height=max_height,
+                min_height=min_height,
+                width=width,
+                description1=description,
+                brand=Brand.objects.get_or_create(title='ST LUCE')[0],
+                category=Category.objects.get_or_create(title='Люстры')[0],
+                subcategory=SubCategory.objects.get_or_create(title=type)[0]
+            )
+            images = page.find('div', class_='product-photo').find_all('img')
+            images = list(set(images))
+            response = requests.get(href+images[0]['src'])
+            response.raise_for_status()
+            item.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item.save()
+            i = 0
+            for imag in images:
+                i += 1
+                if i == 1:
+                    continue
+                try:
+                    img = ItemImage(post=item)
+                    response = requests.get(href+imag['src'])
+                    response.raise_for_status()
+                    img.images.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                    img.save()
+                except:
+                    continue
