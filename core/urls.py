@@ -24,5 +24,5 @@ urlpatterns = [
     path('decor', decor, name='decor'),
     path('alpin', alpin, name='alpin'),
     path('greenline', greenline, name='greenline'),
-    path('create_maytoni_bra', create_maytoni_bra, name='create_maytoni_bra')
+    path('create_mayto', create_mayto, name='create_mayto')
 ]
