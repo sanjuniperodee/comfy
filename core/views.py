@@ -1026,3 +1026,23 @@ def create_greenline(request):
 #         for index, record in enumerate(duplicate_records):
 #             if index > 0:
 #                 record.delete()
+
+def copy(request):
+    items = Item.objects.filter(collection='DELUXE', subcategory__title='Французская елка')
+    for item in items:
+        item1 = Item()
+        item1.length = item.length
+        item1.width = item.width
+        item1.thickness = item.thickness
+        item1.wood_type = item.wood_type
+        item1.faska = item.faska
+        item1.collection = item.collection
+        item1.category = item.category
+        item1.subcategory = SubCategory.objects.get_or_create(title='Английская елка')[0]
+        item1.articul = item.articul
+        item1.slug = item.slug
+        item1.description1 = item.description1
+        item1.brand = item.brand
+        item1.title = item.title
+        item1.price = item.price
+        item1.save()
