@@ -122,7 +122,7 @@
               </ul>
             </li>
             <li class="has-children active">
-              <a href="index.html" style="color: black">Технический свет</a>
+              <a href="{% url 'core:shop' 'Трековые системы' 'all' %}" style="color: black">Технический свет</a>
               <ul class="dropdown">
                 <li class="">
                   <a href="#">Sub Menu</a>
@@ -149,7 +149,14 @@
                   <a href="{% url 'core:shop' 'Декор для стен' 'Карнизы' %}" style="color: black">Карнизы</a>
                     <a href="{% url 'core:shop' 'Декор для стен' 'Молдинг' %}" style="color: black">Молдинг</a>
                     <a href="{% url 'core:shop' 'Декор для стен' 'Плинтуса' %}" style="color: black">Плинтуса</a>
-                    <a href="{% url 'core:shop' 'Декор для стен' 'Панели и решетки' %}" style="color: black">Панели и решетки</a>
+                </li>
+              </ul>
+            </li>
+            <li class="has-children active">
+              <a href="{% url 'core:shop' 'Декор для стен' 'all' %}" style="color: black">Скрытые двери</a>
+              <ul class="dropdown">
+                <li class=" ">
+                  <a href="{% url 'core:shop' 'Декор для стен' 'Карнизы' %}" style="color: black">Карнизы</a>
                 </li>
               </ul>
             </li>

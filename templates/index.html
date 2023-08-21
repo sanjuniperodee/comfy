@@ -130,7 +130,7 @@
 <div class="row" style="padding: 0 10%; margin: 0">
     {% for item in bests %}
     <div style="text-align: center" class="col-lg-3 col-md-6 col-sm-12 pb-1 col-6">
-    <div style="position: relative; background: url('{{ item.image.url }}'); background-size: contain; height: 300px">
+    <div style="position: relative; background: url('{{ item.image.url }}'); background-repeat: no-repeat; background-size: cover; height: 300px">
         <img src="{% static 'img/best_price.png' %}" height="50px">
     </div>
         <div><a>{{ item.title }}</a> <img></div>
@@ -203,7 +203,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
                 <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
                     <h3 style="font-weight: bold">Технический свет</h3>
-                    <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
+                    <a style="color: #82BA66;" href="{% url 'core:shop' 'Трековые системы' 'all' %}">Смотреть все товары →</a>
                     <img src="{% static 'img/spot.png' %}" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
