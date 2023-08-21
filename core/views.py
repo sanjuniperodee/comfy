@@ -1206,3 +1206,52 @@ def alsa_floor(request):
 #             print(item.slug)
 #             print(item.image.url)
 #             item.image = '123123'
+
+def pergo(request):
+    href = 'https://vmasterskoy.kz'
+    soup = BeautifulSoup(get(href + '/search/?value=pergo').text, 'html.parser')
+    print(href + '/search/?value=pergo')
+    items = soup.find_all('div', class_='col-md-3 designer_item')
+    print(len(items))
+    for item in items:
+        print(href + item.find('a')['href'])
+        page = BeautifulSoup(get(href + item.find('a')['href']).text, 'html.parser')
+        title = page.find('h1').text.strip()
+        description = ''
+        table = page.find('div', class_='cont_box active').find_all('li')
+        for row in table:
+            key = row.find_all('div')[0].text.strip()
+            value = row.find_all('div')[1].text.strip()
+            print(key + ": " + value)
+            if key == 'Артикул':
+                articul = value
+            elif key == 'Толщина':
+                thickness = value.replace('мм', '')
+            elif key == 'Материал':
+                wood_type = value
+            elif key == 'Ширина':
+                width = value.replace('мм', '')
+            elif key == 'Длина':
+                length = value.replace('мм', '')
+            else:
+                description+=key + ": " + value + '\n'
+        price = ''.join(filter(str.isdigit, page.find('div', class_='price').text.strip()))
+        print(price)
+        item1 = Item(title=title,
+                    price=price,
+                    articul=articul,
+                    thickness=thickness,
+                    wood_type=wood_type,
+                    width=width,
+                    length=length,
+                    slug=articul,
+                    brand=Brand.objects.get_or_create(title='Pergo')[0],
+                    category=Category.objects.get_or_create(title='Ламинат')[0],
+                    subcategory=SubCategory.objects.get_or_create(title='Ламинат')[0],
+                    description1=description
+                )
+        image = page.find('div', class_='card_slider').find('a')['href']
+        response = requests.get(href+image)
+        response.raise_for_status()
+        item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+        item1.save()
