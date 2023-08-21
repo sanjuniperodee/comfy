@@ -36,9 +36,6 @@ def shop(request, ctg, ctg2):
     articul = request.GET.get('articul')
     min_price = request.GET.get('min_price')
     max_price = request.GET.get('max_price')
-
-
-    # Filter items based on filter values
     if ctg2 != 'all':
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
         subcategory = SubCategory.objects.filter(title=ctg2).first()
@@ -66,6 +63,8 @@ def shop(request, ctg, ctg2):
     print(subcategory)
     print(123123123)
     context = {
+        'min_price': min_price,
+        'max_price': max_price,
         'subcategory' : subcategory,
         'categories': Category.objects.all(),
         'brandy': selected_brands,
@@ -436,7 +435,7 @@ def decor(request):
 
 def mir(request):
     href = 'https://mirparketa.kz'
-    soup = BeautifulSoup(get(href+'/product-category/parket/?swoof=1&pa_firma-proizvoditel=kraft-us&really_curr_tax=18-product_cat').text, 'html.parser')
+    soup = BeautifulSoup(get(href+'/product-category/laminat/?swoof=1&pa_firma-proizvoditel=kraft-us&really_curr_tax=25-product_cat').text, 'html.parser')
     items = soup.find_all('div', class_='product-wrapper')
     for item in items:
         url = item.find('a')['href']
@@ -447,41 +446,29 @@ def mir(request):
         price = page.find('p', class_='price').find('bdi').text.strip()
         print(price)
         table = page.find('table').find_all('tr')
-        thickness = length = width = wood = color = selection = decor = design = collection = ''
+        thickness = length = width = wood = color = selection = decor = design = collection = description = ''
         for row in table:
             key = row.find('span').text.strip()
             value = row.find('td').text.strip().replace(' мм', '')
             print(key + ": " + value)
             if key == 'Толщина':
                 thickness = value
-            if key =='Длина':
+            elif key =='Длина':
                 length = value
-            if key == 'Ширина':
+            elif key == 'Ширина':
                 width = value
-            if key == 'Порода дерева':
-                wood = value
-            if key == 'Группа цветов':
-                color = value
-            if key == 'Селекция':
-                selection = value
-            if key == 'Декоративная обработка':
-                decor = value
-            if key == 'Тип дизайна':
+            elif key == 'Тип дизайна':
                 design = value
-            if key == 'Коллекция':
-                collection = value
+            else:
+                description+=key + ": " + value + '\n'
         item = Item(
             title = title,
             price = price.replace(' ', '').replace(' ', '').replace('₸', ''),
             thickness = thickness,
             length = length,
             width = width,
-            wood_type = wood,
-            selection = selection,
-            decor_obrabotka = decor,
-            collection = collection,
-            color=Color.objects.get_or_create(title=color)[0],
-            category=Category.objects.get_or_create(title='Паркет')[0],
+            description1=description,
+            category=Category.objects.get_or_create(title='Ламинат',subcategory=SubCategory.objects.get_or_create(title=design)[0])[0],
             subcategory=SubCategory.objects.get_or_create(title=design)[0],
             brand=Brand.objects.get_or_create(title='Kraft')[0],
             articul=title.split('(')[1].replace(')',''),

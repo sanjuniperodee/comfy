@@ -127,9 +127,15 @@
               <div class="col-md-12 text-center">
                 <div class="site-block-27">
                   <ul>
-                      {% for link in pagination_links %}
-                        <a href="?{{ link.query_parameters }}">{{ link.page_number }}</a>
-                      {% endfor %}
+                    {% if items.has_previous %}
+                      <li><a href="?page={{ items.previous_page_number }}{% if brandy %}&brands={{ brandy|join:"&brands=" }}{% endif %}{% if articul %}&articul={{ articul }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}" class="previous">&lt;<</a></li>
+                    {% endif %}
+                    {% for link in pagination_links %}
+                      <li><a href="?{{ link.query_parameters }}">{{ link.page_number }}</a></li>
+                    {% endfor %}
+                    {% if items.has_next %}
+                      <li><a href="?page={{ items.next_page_number }}{% if brandy %}&brands={{ brandy|join:"&brands=" }}{% endif %}{% if articul %}&articul={{ articul }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}" class="next">>&gt;</a></li>
+                    {% endif %}
 {#                  {% if items.has_previous %}#}
 {#                    <li><a href="?page={{ items.previous_page_number }}">&lt;</a></li>#}
 {#                  {% endif %}#}
