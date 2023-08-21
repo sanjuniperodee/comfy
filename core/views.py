@@ -468,7 +468,7 @@ def mir(request):
             length = length,
             width = width,
             description1=description,
-            category=Category.objects.get_or_create(title='Ламинат',subcategory=SubCategory.objects.get_or_create(title=design)[0])[0],
+            category=Category.objects.get_or_create(title='Ламинат')[0],
             subcategory=SubCategory.objects.get_or_create(title=design)[0],
             brand=Brand.objects.get_or_create(title='Kraft')[0],
             articul=title.split('(')[1].replace(')',''),
