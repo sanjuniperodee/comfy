@@ -28,5 +28,6 @@ urlpatterns = [
     path('copy', copy, name='copy'),
     path('st_luce', st_luce, name='st_luce'),
     path('alsa_floor', alsa_floor, name='alsa_floor'),
-    path('pergo', pergo, name='pergo')
+    path('pergo', pergo, name='pergo'),
+    path('dogal', dogal, name='dogal')
 ]

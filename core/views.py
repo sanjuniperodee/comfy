@@ -1255,3 +1255,59 @@ def pergo(request):
         response.raise_for_status()
         item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
         item1.save()
+
+def dogal(request):
+    href='https://tineks.kz'
+    for i in range(1,8):
+        soup = BeautifulSoup(get(href+'/catalog/55/filter/brend-is-c260b7d6-a2ef-11e9-946a-0cc47a7ec1cf/apply/?PAGEN_1=' + str(i)).text, 'html.parser')
+        print()
+        items = soup.find_all('div', class_='catalog-item')
+        print(len(items))
+        for item in items:
+            page = BeautifulSoup(get(href+item.find('a')['href']).text, 'html.parser')
+            title = page.find('div', class_='detail--title').text.strip()
+            print(title)
+            price = ''.join(filter(str.isdigit, page.find('div', class_='col-xs-12 prices--curr').text.strip().replace('тнг за м2', '')))
+            table = page.find('div', class_='props').find_all('li')
+            description=''
+            for row in table:
+                key = row.find_all('span')[0].text.strip()
+                value = row.find_all('span')[1].text.strip()
+                if key == 'Длина':
+                    length = value
+                elif key == 'Kоллекция':
+                    collection = value
+                elif key == 'Дизайн':
+                    design = value
+                elif key == 'Ширина':
+                    width = value
+                elif key == 'Толщина':
+                    thickness = value
+                elif key == 'Цвет':
+                    color = value
+                else:
+                    description+=key + ": " + value + '\n'
+            item1 = Item(
+                title=title,
+                price=price,
+                length=length,
+                collection=collection,
+                design=design,
+                width=width,
+                thickness=thickness,
+                color=Color.objects.get_or_create(title=color)[0],
+                articul=title.replace(' ', '_'),
+                slug=title.replace(' ', '_'),
+                category=Category.objects.filter(title='Ламинат')[0],
+                subcategory=SubCategory.objects.filter(title='Ламинат')[0],
+                brand=Brand.objects.get_or_create(title='Varioclic')[0],
+                description1=description
+            )
+            try:
+                image = page.find('img', class_='my-foto')['src']
+                response = requests.get(href + image)
+                response.raise_for_status()
+                item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            except:
+                item1.image='123123'
+            item1.save()
