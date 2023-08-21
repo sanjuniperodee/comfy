@@ -91,18 +91,18 @@
               </ul>
             </li>
             <li class="has-children active">
-              <a href="index.html" style="color: black">Ламинат</a>
+              <a href="{% url 'core:shop' 'Ламинат' 'all' %}" style="color: black">Ламинат</a>
               <ul class="dropdown">
-                <li class="">
-                  <a href="#">Sub Menu</a>
-                </li>
+                  <li><a href="{% url 'core:shop' 'Ламинат' 'Английская елка' %}">Английская ёлка</a></li>
+                  <li><a href="{% url 'core:shop' 'Ламинат' 'Французская елка' %}">Французская ёлка</a></li>
+                  <li><a href="{% url 'core:shop' 'Ламинат' 'Ламинат' %}">Ламинат</a></li>
               </ul>
             </li>
             <li class="has-children active">
-              <a href="index.html" style="color: black">SPC</a>
+              <a href="{% url 'core:shop' 'SPC' 'all' %}" style="color: black">SPC</a>
               <ul class="dropdown">
                 <li class="">
-                  <a href="#">Sub Menu</a>
+                  <a href="{% url 'core:shop' 'SPC' 'all' %}">SPC</a>
                 </li>
               </ul>
             </li>
@@ -125,18 +125,26 @@
               </ul>
             </li>
             <li class="has-children active">
-              <a href="index.html" style="color: black">Микроплинтус</a>
+              <a href="{% url 'core:shop' 'Микроплинтус' 'all' %}" style="color: black">Микроплинтус</a>
               <ul class="dropdown">
                 <li class="">
-                  <a href="#">Sub Menu</a>
+                  <a href="{% url 'core:shop' 'Микроплинтус' 'Микроплинтус' %}">Микроплинтус</a>
+                    <a href="{% url 'core:shop' 'Микроплинтус' 'МИКРОПЛИНТУС Micro-L' %}">МИКРОПЛИНТУС Micro-L</a>
+                    <a href="{% url 'core:shop' 'Микроплинтус' 'ТЕНЕВОЙ ПЛИНТУС' %}">ТЕНЕВОЙ ПЛИНТУС</a>
+                    <a href="{% url 'core:shop' 'Микроплинтус' 'ТЕНЕВАЯ РЕЙКА' %}">ТЕНЕВАЯ РЕЙКА</a>
+                    <a href="{% url 'core:shop' 'Микроплинтус' 'СКРЫТЫЙ ПЛИНТУС' %}">СКРЫТЫЙ ПЛИНТУС</a>
+                    <a href="{% url 'core:shop' 'Микроплинтус' 'ТЕНЕВОЙ ПОТОЛОЧНЫЙ КАРНИЗ' %}">ТЕНЕВОЙ ПОТОЛОЧНЫЙ КАРНИЗ</a>
                 </li>
               </ul>
             </li>
             <li class="has-children active">
-              <a href="index.html" style="color: black">Декор для стен</a>
+              <a href="{% url 'core:shop' 'Декор для стен' 'all' %}" style="color: black">Декор для стен</a>
               <ul class="dropdown">
                 <li class=" ">
-                  <a href="#">Sub Menu</a>
+                  <a href="{% url 'core:shop' 'Декор для стен' 'Карнизы' %}" style="color: black">Карнизы</a>
+                    <a href="{% url 'core:shop' 'Декор для стен' 'Молдинг' %}" style="color: black">Молдинг</a>
+                    <a href="{% url 'core:shop' 'Декор для стен' 'Плинтуса' %}" style="color: black">Плинтуса</a>
+                    <a href="{% url 'core:shop' 'Декор для стен' 'Панели и решетки' %}" style="color: black">Панели и решетки</a>
                 </li>
               </ul>
             </li>
