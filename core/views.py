@@ -1381,5 +1381,8 @@ def firm(request):
 
 def slug(request):
     for item in Item.objects.all():
-        item.slug = item.slug.replace('/', '_')
-        item.save()
+        try:
+            item.slug = item.slug.replace('/', '_')
+            item.save()
+        except:
+            item.slug = item.pk
