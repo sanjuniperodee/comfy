@@ -493,7 +493,7 @@ def mir(request):
 def create_mayto(request):
     href = 'https://maytoni.ru'
     for i in range(1, 2):
-        url = href + "/catalog/functional/trekovye-sistemy/magnitnaya-trekovaya-sistema-exility/?PAGEN_1=5"
+        url = href + "/catalog/decorative/nastolnye-svetilniki/?SHOWALL=1#product_23"
         print(url)
         soup = BeautifulSoup(get(url).text, 'html.parser')
         products = soup.find_all('a', class_='catalog-card__link')
@@ -538,10 +538,9 @@ def create_mayto(request):
                 image_urls.append(href+image.find('img')['src'])
             print(str(image_urls))
             item = Item(title=title + " " + articul,
-                        category=Category.objects.get_or_create(title='Трековые системы')[0],
+                        category=Category.objects.get_or_create(title='Светильники')[0],
                         subcategory=SubCategory.objects.get_or_create(title=type)[0],
                         articul=articul,
-                        collection='Магнитная трековая система EXILITY',
                         price=int(price) * 5.5,
                         slug=articul.replace(" ", "_"),
                         description1=teh,
