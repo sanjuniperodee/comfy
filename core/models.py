@@ -12,7 +12,7 @@ def format_price(price_text):
     try:
         price_text = ''.join(filter(str.isdigit, price_text))
         price = int(price_text)
-        formatted_price = '{:,}'.format(price)
+        formatted_price = '{: }'.format(price)
 
         return formatted_price
     except ValueError:

@@ -82,9 +82,9 @@
                   <figure class="block-4-image">
                     <a href="{% url 'core:detail' item.slug %}"><img src="{{ item.image.url }}" alt="Image placeholder" class="img-fluid" style="height: 250px"></a>
                   </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="{% url 'core:detail' item.slug %}" style="font-size: 90%">{{ item.title }}</a></h3>
-                    <p class="text-primary font-weight-bold text-black" style="font-size: 120%; font-weight: bold">₸{{ item.get_price }}</p>
+                  <div class="block-4-text p-4" style="color: black">
+                    <h3><a class="text-dark" href="{% url 'core:detail' item.slug %}" style="font-size: 90%">{{ item.title }}</a></h3>
+                      <p class="font-weight-bold text-dark" style="font-size: 120%; font-weight: bold; color: black">₸{{ item.get_price }}</p></p>
                   </div>
                     <p><button class="buy-now btn btn-sm btn-primary" id="add_to_card"  value="{{ item.slug }}" type="button" name="{{ item.title }}">В Корзину</button></p>
 
