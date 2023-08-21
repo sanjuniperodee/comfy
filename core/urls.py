@@ -26,5 +26,6 @@ urlpatterns = [
     path('greenline', greenline, name='greenline'),
     path('create_mayto', create_mayto, name='create_mayto'),
     path('copy', copy, name='copy'),
-    path('st_luce', st_luce, name='st_luce')
+    path('st_luce', st_luce, name='st_luce'),
+    path('alsa_floor', alsa_floor, name='alsa_floor')
 ]

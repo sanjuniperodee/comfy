@@ -1056,7 +1056,7 @@ def st_luce(request):
         for item in items:
             # print(item)
             page = BeautifulSoup(get(href+item.find_all('a')[-1]['href']).text, 'html.parser')
-            print(href+item.find('a')['href'])
+            print(href+item.find_all('a')[-1]['href'])
             title = page.find('div', class_='title-page title-page-no-bord').text.strip()
             price = page.find_all('div', class_='price')[1].text.strip().replace(' руб.', '').replace(' ', '')
             print(title + ": " + price)
@@ -1124,3 +1124,67 @@ def st_luce(request):
                     img.save()
                 except:
                     continue
+
+def alsa_floor(request):
+    href = 'http://www.alsafloor.ru'
+    soup = BeautifulSoup(get(href + '/collection').text, 'html.parser')
+    collections = soup.find('ul', class_='catalog-collection collection-view-tile').find_all('div', class_='catalog-collection-item-content feed-item-content block-content')
+    for collection in collections:
+        print(collection.find('a')['href'])
+        collection1 = collection.find('h3').text.strip()
+        page = BeautifulSoup(get(href+collection.find('a')['href']).text, 'html.parser')
+        items = page.find('ul', class_='catalog-collection collection-view-tile').find_all('li')
+        params = page.find('div', class_='block-text block-type-catalogitem-text textcontent').find_all('li')
+        description1 = description2 = ''
+        for row in params:
+            if len(row.text.strip().split(':')) < 2:
+                description1+=row.text.strip() + '\n'
+                continue
+            print(row.text.strip().split(':'))
+            key = row.text.strip().split(':')[0]
+            value = row.text.strip().split(':')[1]
+            if key == 'Размеры доски':
+                print(value.split('x'))
+                print(value.split('х'))
+                try:
+                    length = value.split('x')[0]
+                    width = value.split('x')[1]
+                except:
+                    length = value.split('х')[0]
+                    width = value.split('х')[1]
+            else:
+                description1 += row.text.strip() + '\n'
+        print(width + " " + length)
+        print(len(items))
+        for item in items:
+            print(item.find('h3').text.strip())
+            title = item.find('h3').text.strip()
+            table = item.find('div', class_='item-params').find_all('div', class_=lambda x: x and x.startswith("item-desc-row"))
+            for row in table:
+                print(row.text.strip())
+                key = row.find_all('div')[0].text.strip()
+                value = row.find_all('div')[1].text.strip()
+                if key =='Артикул':
+                    articul = value
+                elif key == 'Толщина':
+                    thickness = value
+                else:
+                    description2+=key + ": " + value + '\n'
+            item1 = Item(title=title,
+                        articul = articul,
+                        slug = articul + '_' + title,
+                        thickness = thickness,
+                        length = length,
+                        width = width,
+                        description1 = description1,
+                        description2 = description2,
+                        brand = Brand.objects.get_or_create(title='Alsafloor')[0],
+                        category=Category.objects.get_or_create(title='Ламинаи')[0],
+                        subcategory=SubCategory.objects.get_or_create(title='Ламинат')[0],
+                        collection = collection1
+                    )
+            img = item.find('img')['src']
+            response = requests.get(img)
+            response.raise_for_status()
+            item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item1.save()

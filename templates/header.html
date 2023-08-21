@@ -48,10 +48,22 @@
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-              <div class="site-top-icons">
+              <div class="site-top-icons d-flex justify-content-around text-right" style="gap: 15px;">
+                <li style="display: flex; flex-direction: column; font-size: 80%; text-align: start">
+                    <a href="#" style="color:black">
+                        Телефон: +7(708)-242-04-82
+                    </a>
+                    <a href="#" style="color: black">
+                        Адрес: Розыбакиева 237/4
+                    </a>
+                    <div style="display: flex; flex-direction: row; font-size: 150%; gap: 5px">
+                      <a href="https://www.instagram.com/comfy_you.kz/" class="fa fa-instagram"></a>
+                      <a href="https://t.me/+77020590238" class="fa fa-telegram"></a>
+                      <a href="https://wa.me/+77020590238" class="fa fa-whatsapp"></a>
+                    </div>
+                  </li>
                 <ul>
                   <li><a href="{% url 'core:profile' %}"><span class="icon icon-person"></span></a></li>
-                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
                   <li>
                     <a href="{% url 'core:cart' %}" class="site-cart">
                       <span class="icon icon-shopping_cart"></span>
