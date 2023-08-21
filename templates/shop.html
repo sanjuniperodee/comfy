@@ -163,7 +163,7 @@
               {% else %}
             <ul class="list-unstyled mb-0">
                   {% for sub in categories %}
-                <li class="mb-1"><a href="{% url 'core:shop' sub.title 'all' %}" class="d-flex"><span>{{ sub.title }}</span> <span class="text-black ml-auto"></span></a></li>
+                <li class="mb-1"><a href="{% url 'core:shop' sub.title 'all'%}" class="d-flex"><span>{{ sub.title }}</span> <span class="text-black ml-auto"></span></a></li>
                   {% endfor %}
               </ul>
             {% endif %}

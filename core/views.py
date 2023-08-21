@@ -27,7 +27,7 @@ from django.db.models import Subquery
 def home(request):
     articul = request.GET.get('articul')
     if articul:
-        return redirect('core:shop', ctg='all', ctg2='all')
+        return redirect(f'/shop/all/all?articul={articul}')
     bests = Item.objects.filter(collection='EXTRA')
     return render(request, 'index.html', {'categories': Category.objects.all(), 'bests': bests})
 
@@ -35,16 +35,17 @@ def home(request):
 #     return render(request, 'parket.html', {'subcategories': SubCategory.objects.filter(is_parket=True)})
 
 def shop(request, ctg, ctg2):
+    categories = set(Category.objects.all())
     subcategory = ctg2
     selected_brands = request.GET.getlist('brands')
-    articul = request.GET.get('articul')
+    articul = request.session.get('articul')
     min_price = request.GET.get('min_price')
     max_price = request.GET.get('max_price')
-    if ctg2 != 'all' and ctg!='all':
+    if ctg2 != 'all' and ctg !='all':
         category = Category.objects.filter(title=ctg)[0]
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
         subcategory = SubCategory.objects.filter(title=ctg2).first()
-    elif ctg2 == 'all':
+    elif ctg2 == 'all' and ctg !='all':
         category = Category.objects.filter(title=ctg)[0]
         object_list = Item.objects.filter(category__title=ctg)
         subcategory = None
@@ -53,6 +54,10 @@ def shop(request, ctg, ctg2):
         object_list = Item.objects.all()
     if articul:
         object_list = object_list.filter(Q(articul__icontains=articul) | Q(title__icontains=articul))
+        if ctg == 'all':
+            categories = set()
+            for item in object_list:
+                categories.add(item.category)
     if selected_brands:
         object_list = object_list.filter(brand__title__in=selected_brands)
     if min_price and max_price:
@@ -74,7 +79,7 @@ def shop(request, ctg, ctg2):
         'min_price': min_price,
         'max_price': max_price,
         'subcategory' : subcategory,
-        'categories': Category.objects.all(),
+        'categories': categories,
         'brandy': selected_brands,
         'brands': Item.objects.filter(category__title=ctg).values('brand__title').distinct(),
         'pages': range(1,pages+1),
