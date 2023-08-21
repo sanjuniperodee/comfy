@@ -1377,3 +1377,9 @@ def firm(request):
             except:
                 item1.image='123123'
             item1.save()
+
+
+def slug(request):
+    for item in Item.objects.all():
+        item.slug = item.slug.replace('/', '_')
+        item.save()

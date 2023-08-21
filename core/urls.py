@@ -30,5 +30,6 @@ urlpatterns = [
     path('alsa_floor', alsa_floor, name='alsa_floor'),
     path('pergo', pergo, name='pergo'),
     path('dogal', dogal, name='dogal'),
-    path('firm', firm, name='firm')
+    path('firm', firm, name='firm'),
+    path('slug', slug, name='slug')
 ]
