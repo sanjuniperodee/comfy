@@ -1246,7 +1246,7 @@ def pergo(request):
                     length=length,
                     slug=articul,
                     brand=Brand.objects.get_or_create(title='Pergo')[0],
-                    category=Category.objects.get_or_create(title='Ламинат')[0],
+                    category=Category.objects.filter(title='Ламинат')[0],
                     subcategory=SubCategory.objects.get_or_create(title='Ламинат')[0],
                     description1=description
                 )
