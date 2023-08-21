@@ -7,6 +7,17 @@ from django.shortcuts import reverse, get_object_or_404, redirect
 from django.utils import timezone
 from django_countries.fields import CountryField
 
+
+def format_price(price_text):
+    try:
+        price_text = ''.join(filter(str.isdigit, price_text))
+        price = int(price_text)
+        formatted_price = '{:,}'.format(price)
+
+        return formatted_price
+    except ValueError:
+        return "Invalid input"
+
 class Brand(models.Model):
     title = models.CharField(max_length=15)
     def __str__(self):
@@ -69,7 +80,9 @@ class Item(models.Model):
         return self.title
 
     def get_price(self):
-        return int(self.price)
+        price_text = str(int(self.price))
+        formatted_price = format_price(price_text)
+        return formatted_price
 
     def get_absolute_url(self):
         return reverse("core:product", kwargs={

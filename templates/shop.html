@@ -127,15 +127,18 @@
               <div class="col-md-12 text-center">
                 <div class="site-block-27">
                   <ul>
-                  {% if items.has_previous %}
-                    <li><a href="?page={{ items.previous_page_number }}">&lt;</a></li>
-                  {% endif %}
-                      {% for i in pages %}
-                          <li {% if items.number == i %}class="active"{% endif %}><a href="?page={{ i }}"><span>{{ i }}</span></a></li>
+                      {% for link in pagination_links %}
+                        <a href="?{{ link.query_parameters }}">{{ link.page_number }}</a>
                       {% endfor %}
-                  {% if items.has_next %}
-                    <li><a href="?page={{ items.next_page_number }}">&gt;</a></li>
-                  {% endif %}
+{#                  {% if items.has_previous %}#}
+{#                    <li><a href="?page={{ items.previous_page_number }}">&lt;</a></li>#}
+{#                  {% endif %}#}
+{#                      {% for i in pages %}#}
+{#                          <li {% if items.number == i %}class="active"{% endif %}><a href="?page={{ i }}?{{ link.query_parameters }}"><span>{{ i }}</span></a></li>#}
+{#                      {% endfor %}#}
+{#                  {% if items.has_next %}#}
+{#                    <li><a href="?page={{ items.next_page_number }}">&gt;</a></li>#}
+{#                  {% endif %}#}
                   </ul>
                 </div>
               </div>
@@ -151,28 +154,9 @@
                   {% endfor %}
               </ul>
             </div>
-
+<form method="get">
             <div class="border p-4 rounded mb-4">
-{#              <aside class="left_widgets p_filter_widgets price_rangs_aside">#}
-{#                    <div class="l_w_stitle">#}
-{#                    <h3 class="mb-3 h6 text-black d-block">Цена</h3>#}
-{#                    </div>#}
-{#                    <div class="widgets_inner">#}
-{#                        <div class="range_item">#}
-{#                            <input type="text" class="js-range-slider" value="" />#}
-{#                            <div class="d-flex pb-0">#}
-{#                            <p style="margin-bottom: 0">от: </p>#}
-{#                            <p style="margin-bottom: 0"><input style="margin-bottom: 0; border: none" type="text" class="js-input-from" id="amount" readonly /></p>#}
-{#                            </div>#}
-{#                            <div class="d-flex">#}
-{#                            <p>до: </p>#}
-{#                            <p><input style="border: none" type="text" class="js-input-to" id="amount" readonly /></p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </aside>#}
                 <div class="box">
-
   <h3 class="mb-3 h6 text-black d-block">Цена</h3>
                     <div class="price-input">
         <div class="field">
@@ -193,8 +177,8 @@
         <div class="progress"></div>
       </div>
       <div class="range-input">
-        <input type="range" class="range-min" min="0" max="990000" value="200000" step="1000">
-        <input type="range" class="range-max" min="0" max="1000000" value="750000" step="1000">
+        <input type="range" class="range-min" min="0" name="min_price" max="990000" value="200000" step="1000">
+        <input type="range" class="range-max" min="0" name="max_price" max="1000000" value="750000" step="1000">
       </div>
 {#    <div class="values">#}
 {#        <div>₸<span id="first"></span></div> - <div>₸<span id="second"></span></div>#}
@@ -211,12 +195,12 @@
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Бренд</h3>
                   {% for brand in brands %}
                 <label for="s_sm" class="d-flex">
-                  <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">{{ brand.brand__title }}</span>
+                  <input type="checkbox" id="s_sm" class="mr-2 mt-1" name="brands" value="{{ brand.brand__title }}" {% if brand.brand__title in brandy %} checked {% endif %} > <span class="text-black">{{ brand.brand__title }}</span>
                 </label>
                   {% endfor %}
-                <p><button class="buy-now btn btn-sm btn-primary" id="add_to_card"  value="{{ item.slug }}" type="button" name="{{ item.title }}">Применить</button></p>
+                <p><button class="buy-now btn btn-sm btn-primary" id="post" type="submit">Применить</button></p>
               </div>
-
+                </form>
             </div>
           </div>
         </div>

@@ -4,6 +4,8 @@ import re
 import requests
 from .models import *
 from django.conf import settings
+from django.core.files.storage import default_storage
+
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -30,14 +32,33 @@ def home(request):
 
 def shop(request, ctg, ctg2):
     subcategory = ctg2
+    selected_brands = request.GET.getlist('brands')
+    articul = request.GET.get('articul')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+
+    # Filter items based on filter values
     if ctg2 != 'all':
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
-        subcategory = SubCategory.objects.filter(title=subcategory)[0]
+        subcategory = SubCategory.objects.filter(title=ctg2).first()
     else:
         object_list = Item.objects.filter(category__title=ctg)
+        subcategory = None
+    if articul:
+        object_list = object_list.filter(articul__icontains=articul)
+    if selected_brands:
+        object_list = object_list.filter(brand__title__in=selected_brands)
+    if min_price and max_price:
+        object_list = object_list.filter(price__gte=min_price, price__lte=max_price)
     paginator = Paginator(object_list, 18)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    pagination_links = []
+    for page in page_obj.paginator.page_range:
+        query_parameters = request.GET.copy()
+        query_parameters['page'] = page
+        pagination_links.append({'page_number': page, 'query_parameters': query_parameters.urlencode()})
     pages = int(len(object_list)/18)
     if len(object_list) % 18 > 0:
         pages+=1
@@ -47,11 +68,13 @@ def shop(request, ctg, ctg2):
     context = {
         'subcategory' : subcategory,
         'categories': Category.objects.all(),
+        'brandy': selected_brands,
         'brands': Item.objects.filter(category__title=ctg).values('brand__title').distinct(),
         'pages': range(1,pages+1),
         'category': category,
         'items': page_obj,
         'user': request.user,
+        'pagination_links': pagination_links,
     }
     return render(request, 'shop.html', context)
 
@@ -1188,3 +1211,11 @@ def alsa_floor(request):
             response.raise_for_status()
             item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
             item1.save()
+
+# def images(request):
+#     for item in Item.objects.all():
+#         if not item.image or not default_storage.exists(item.image.name):
+#             print(item.title)
+#             print(item.slug)
+#             print(item.image.url)
+#             item.image = '123123'
