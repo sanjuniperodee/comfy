@@ -38,7 +38,7 @@ def shop(request, ctg, ctg2):
     categories = set(Category.objects.all())
     subcategory = ctg2
     selected_brands = request.GET.getlist('brands')
-    articul = request.session.get('articul')
+    articul = request.GET.get('articul')
     min_price = request.GET.get('min_price')
     max_price = request.GET.get('max_price')
     if ctg2 != 'all' and ctg !='all':
