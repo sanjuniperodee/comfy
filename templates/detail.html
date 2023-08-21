@@ -65,7 +65,8 @@
             </div>
 
             </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">В Корзину</a></p>
+          <p><button class="buy-now btn btn-sm btn-primary" id="add_to_card"  value="{{ item.slug }}" type="button" name="{{ item.title }}">В Корзину</button></p>
+
 
           </div>
         </div>
@@ -91,15 +92,43 @@
     {% include 'footer.html' %}
   </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-
-  <script src="js/main.js"></script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-ui.js'%}"></script>
+  <script src="{% static 'js/popper.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
+  <script src="{% static 'js/aos.js'%}"></script>
+  <script src="{% static 'js/main.js'%}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+  <script type="text/javascript">
+    const buttons = document.querySelectorAll('button[id="add_to_card"]');
+    console.log(buttons)
+    for(let i = 0; i < buttons.length ; i++) {
+        if(buttons[i].id == 'add_to_card'){
+            console.log(buttons[i]['value'])
+            buttons[i].addEventListener('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "core:add-to-cart1" %}',
+                    data:
+                    {
+                        slug:buttons[i]['value'],
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    dataType:'json',
+                    success:function(){
+                        let p = document.getElementById('number');
+                        console.log(p)
+                        alert("Добавлено в корзину " + buttons[i]['name']);
+                    }
+                })
+            });
+        }
+    }
+</script>
 
   </body>
 </html>
