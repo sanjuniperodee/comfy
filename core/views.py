@@ -5,6 +5,7 @@ import requests
 from .models import *
 from django.conf import settings
 from django.core.files.storage import default_storage
+from django.db.models import Q
 
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -43,7 +44,7 @@ def shop(request, ctg, ctg2):
         object_list = Item.objects.filter(category__title=ctg)
         subcategory = None
     if articul:
-        object_list = object_list.filter(articul__icontains=articul)
+        object_list = object_list.filter(Q(articul__icontains=articul) | Q(title__icontains=articul))
     if selected_brands:
         object_list = object_list.filter(brand__title__in=selected_brands)
     if min_price and max_price:

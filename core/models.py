@@ -12,7 +12,7 @@ def format_price(price_text):
     try:
         price_text = ''.join(filter(str.isdigit, price_text))
         price = int(price_text)
-        formatted_price = '{: }'.format(price)
+        formatted_price = '{:,}'.format(price)
 
         return formatted_price
     except ValueError:
@@ -83,7 +83,7 @@ class Item(models.Model):
         try:
             price_text = str(int(self.price))
             formatted_price = format_price(price_text)
-            return formatted_price
+            return formatted_price.replace(',', ' ')
         except:
             return 0
 
