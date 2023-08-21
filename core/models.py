@@ -80,9 +80,12 @@ class Item(models.Model):
         return self.title
 
     def get_price(self):
-        price_text = str(int(self.price))
-        formatted_price = format_price(price_text)
-        return formatted_price
+        try:
+            price_text = str(int(self.price))
+            formatted_price = format_price(price_text)
+            return formatted_price
+        except:
+            return 0
 
     def get_absolute_url(self):
         return reverse("core:product", kwargs={
