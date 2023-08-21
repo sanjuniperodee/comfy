@@ -44,7 +44,7 @@ def shop(request, ctg, ctg2):
         category = Category.objects.filter(title=ctg)[0]
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
         subcategory = SubCategory.objects.filter(title=ctg2).first()
-    elif ctg2!='all':
+    elif ctg2 == 'all':
         category = Category.objects.filter(title=ctg)[0]
         object_list = Item.objects.filter(category__title=ctg)
         subcategory = None
