@@ -21,6 +21,28 @@
             margin: 0;
             color: black;
         }
+        .kraft{
+            background: url({% static 'imgsale.jpg' %});
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .carou{
+            height: 700px
+        }
+        @media screen and (max-width: 768px) {
+            .carou{
+                height: 450px;
+            }
+            .kraft{
+                background: url({% static 'img/kraft_sale.jpg' %});
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -31,16 +53,16 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" style="height: 700px;">
+        <div class="carousel-inner carou">
           <div class="carousel-item active" style="background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url({% static 'img/comfy.avif' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
             <!-- <img class="d-block w-100" src="comfy1.jpg" alt="First slide" width="100%"> -->
-            <div style="padding: 20% 0 0% 20%">
+            <div class="flex-column" style="width: 100%; height: 80%; display: flex; justify-content: center; text-align: center; align-items: center; align-content: center">
                 <h1 style="color: white; margin-bottom: 2%">Создаем уют в вашем доме</h1>
-                <div style="display: flex; gap: 30px;">
-                    <div style="color: white; background-color: #82BA66; align-items: center; width: 200px; display: flex; justify-content: space-around;">
+                <div style="display: flex; gap: 20px;">
+                    <div style="color: white; background-color: #82BA66; align-items: center; width: 180px; display: flex; justify-content: end;">
                         <a href="#catalog" style="color: white">Посмотреть Каталог</a>
                     </div>
-                    <div style="color: #82BA66; border-style: solid; padding: 20px; align-items: center; width: 200px; display: flex; justify-content: space-around; border-color: #82BA66; border-width: 2px;">
+                    <div style="color: #82BA66; border-style: solid; padding: 15px; align-items: center; width: 180px; display: flex; justify-content: space-around; border-color: #82BA66; border-width: 2px;">
                         <a href="#call" style="color: white">
                             Заказать Звонок
                         </a>
@@ -48,13 +70,17 @@
                 </div>
             </div>
           </div>
-          <div class="carousel-item" style="background: url({% static 'img/sale.jpg' %}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
-            <!-- <img class="d-block w-100" src="comfy.avif" alt="Second slide" width="100%"> -->
+          <div class="carousel-item kraft">
               <div style="text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; filter: brightness(100%)">
+
               </div>
           </div>
-          <div class="carousel-item" style="background-image: url({% static 'img/microL.png'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
-            <a href=""> 123</a>
+          <div class="carousel-item" style="background-image: url({% static 'img/micro.jpg'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
+            <div class="text-uppercase flex-column" style="width: 90%; height: 90%; display: flex; justify-content: end; text-align: end; align-items: end; align-content: end">
+                <h1 style="font-size: 200%">Микроплинтус</h1>
+                <p>ЕДВА ЗАМЕТНАЯ ЛИНИЯ, СКРЫВАЮЩАЯ СТЫК
+МЕЖДУ СТЕНОЙ И НАПОЛЬНЫМ ПОКРЫТИЕМ</p>
+            </div>
           </div>
 
         </div>
@@ -120,7 +146,7 @@
         </div>
     </div>
 
-<div style="margin-left: 80%; width: 10%; height: 300px; position: absolute; margin-top: 200px">
+<div class="d-none d-md-block" style="margin-left: 80%; width: 10%; height: 300px; position: absolute; margin-top: 200px">
     <div style="width: 100%; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); "></div>
 </div>
 {#    #75AB30, #75AB30#}
@@ -219,7 +245,7 @@
 
         </div>
 <div style="margin-left: 80%; width: 10%; height: 300px; position: absolute; margin-top: 100px">
-    <div style="width: 100%; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); "></div>
+    <div class="d-none d-md-block" style="width: 100%; height: 300px; transform: rotate(-121.61deg); transform-origin: 0 0; background: radial-gradient(45.83% 45.92% at 23.45% 21.69%, rgba(117,171,48, 0.8) 0%, rgba(117,171,48, 0.8) 100%); box-shadow: 150px 150px 150px; border-radius: 9999px; filter: blur(150px); "></div>
 </div>
 <section class="ftco-section mb-0 pb-0">
     <div class="container">

@@ -25,6 +25,9 @@ from django.db.models import Subquery
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def home(request):
+    articul = request.GET.get('articul')
+    if articul:
+        return redirect('core:shop', ctg='all', ctg2='all')
     bests = Item.objects.filter(collection='EXTRA')
     return render(request, 'index.html', {'categories': Category.objects.all(), 'bests': bests})
 
@@ -37,12 +40,17 @@ def shop(request, ctg, ctg2):
     articul = request.GET.get('articul')
     min_price = request.GET.get('min_price')
     max_price = request.GET.get('max_price')
-    if ctg2 != 'all':
+    if ctg2 != 'all' and ctg!='all':
+        category = Category.objects.filter(title=ctg)[0]
         object_list = Item.objects.filter(category__title=ctg, subcategory__title=ctg2)
         subcategory = SubCategory.objects.filter(title=ctg2).first()
-    else:
+    elif ctg2!='all':
+        category = Category.objects.filter(title=ctg)[0]
         object_list = Item.objects.filter(category__title=ctg)
         subcategory = None
+    else:
+        category = 'all'
+        object_list = Item.objects.all()
     if articul:
         object_list = object_list.filter(Q(articul__icontains=articul) | Q(title__icontains=articul))
     if selected_brands:
@@ -60,7 +68,6 @@ def shop(request, ctg, ctg2):
     pages = int(len(object_list)/18)
     if len(object_list) % 18 > 0:
         pages+=1
-    category = Category.objects.filter(title=ctg)[0]
     print(subcategory)
     print(123123123)
     context = {

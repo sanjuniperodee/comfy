@@ -154,11 +154,19 @@
           <div class="col-md-3 order-1 mb-5 mb-md-0">
             <div class="border p-4 rounded mb-4">
               <h3 class="mb-3 h6 text-black d-block">Категории</h3>
+              {% if category != 'all' %}
               <ul class="list-unstyled mb-0">
                   {% for sub in category.subcategories.all %}
                 <li class="mb-1"><a href="{% url 'core:shop' category.title sub.title %}" class="d-flex"><span>{{ sub.title }}</span> <span class="text-black ml-auto"></span></a></li>
                   {% endfor %}
               </ul>
+              {% else %}
+            <ul class="list-unstyled mb-0">
+                  {% for sub in categories %}
+                <li class="mb-1"><a href="{% url 'core:shop' sub.title 'all' %}" class="d-flex"><span>{{ sub.title }}</span> <span class="text-black ml-auto"></span></a></li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
             </div>
 <form method="get">
             <div class="border p-4 rounded mb-4">
