@@ -165,8 +165,8 @@
     <div style="position: relative; background: url('{{ item.image.url }}'); background-repeat: no-repeat; background-size: cover; height: 300px">
         <img src="{% static 'img/best_price.png' %}" height="50px">
     </div>
-        <div><a class="text-dark" href="{% url 'core:detail' item.slug %}">{{ item.title }}</a> <img></div>
-        <p class="font-weight-bold text-dark" style="font-size: 150%; font-weight: bolder; color: black"> ₸25 900 тг </p>
+        <div><a class="text-dark" style="font-size: 90%" href="{% url 'core:detail' item.slug %}">{{ item.title }}</a> <img></div>
+        <p class="font-weight-bold text-dark" style="font-size: 150%; font-weight: bold; color: black"> ₸25 900 тг </p>
         <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
            <a class="text-dark" href="{% url 'core:detail' item.slug %}">Купить</a>
         </div>
