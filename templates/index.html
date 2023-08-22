@@ -22,7 +22,7 @@
             color: black;
         }
         .kraft{
-            background: url({% static 'imgsale.jpg' %});
+            background: url({% static 'img/sale.jpg' %});
             height: 100%;
             background-repeat: no-repeat;
             background-size: cover;
@@ -75,7 +75,7 @@
 
               </div>
           </div>
-          <div class="carousel-item" style="background-image: url({% static 'img/micro.jpg'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
+          <div class="carousel-item" style="background-image: url({% static 'img/microL.png'%}); height: 100%; background-repeat: no-repeat; background-size: cover; background-position: top; filter: brightness(60%);">
             <div class="text-uppercase flex-column" style="width: 90%; height: 90%; display: flex; justify-content: end; text-align: end; align-items: end; align-content: end">
                 <h1 style="font-size: 200%">Микроплинтус</h1>
                 <p>ЕДВА ЗАМЕТНАЯ ЛИНИЯ, СКРЫВАЮЩАЯ СТЫК
@@ -160,7 +160,7 @@
         <img src="{% static 'img/best_price.png' %}" height="50px">
     </div>
         <div><a class="text-dark" href="{% url 'core:detail' item.slug %}">{{ item.title }}</a> <img></div>
-        <div>25 900 тг </div>
+        <p class="font-weight-bold text-dark" style="font-size: 150%; font-weight: bolder; color: black"> ₸25 900 тг </p>
         <div style="width: 100%; border-style: solid; border-width: 1px; padding: 7px 0">
            <a class="text-dark" href="{% url 'core:detail' item.slug %}">Купить</a>
         </div>
@@ -235,9 +235,9 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 pb-1 col-12" style="margin-bottom: 30px;">
                 <div style="background: rgba(239, 239, 240, 1); padding-top: 30px; padding-left: 10px; width: 99%; height: 100%">
-                    <h3 style="font-weight: bold">Технический свет</h3>
-                    <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстра' 'all'%}">Смотреть все товары →</a>
-                    <img src="{% static 'img/spot.png' %}" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
+                    <h3 style="font-weight: bold">Скрытые двери</h3>
+                    <a style="color: #82BA66;" href="{% url 'core:shop' 'Люстры' 'all'%}">Смотреть все товары →</a>
+                    <img src="{% static 'img/hidden_door.jpg' %}" style="width: 80%; margin: 5% 10%; display: flex; justify-content: space-around">
                 </div>
             </div>
         </div>
