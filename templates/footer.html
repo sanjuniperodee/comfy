@@ -27,11 +27,11 @@
 
               <div class="col-md-12 col-lg-6">
                 <ul class="list-unstyled">
-                  <li><a href="#">Люстры</a></li>
+                  <li><a href="{% url 'core:shop' 'Люстры' 'all' %}">Люстры</a></li>
                   <li><a href="#">Двери</a></li>
-                  <li><a href="#">Декор для дома</a></li>
-                  <li><a href="#">Напольные покрытия</a></li>
-                  <li><a href="#">Техническое освещение</a></li>
+                  <li><a href="{% url 'core:shop' 'Декор для стен' 'all' %}">Декор для стен</a></li>
+                  <li><a href="{% url 'core:shop' 'Паркет' 'all' %}">Напольные покрытия</a></li>
+                  <li><a href="{% url 'core:shop' 'Трековые системы' 'all' %}">Техническое освещение</a></li>
                 </ul>
               </div>
             </div>
@@ -62,7 +62,7 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <h1 class="text-secondary text-uppercase mb-4 text-dark"><a href="https://2gis.kz/almaty/firm/70000001052458346" class="text-dark">Мы в <img src="{% static 'img/2gis.png' %}" width="45%"></a></h1>
-            <div id="map" style="width:100%; height:250px"></div>
+              <a href="https://2gis.kz/almaty/firm/70000001052458346" class="text-dark"><div id="map" style="width:100%; height:250px"></div></a>
           </div>
         </div>
       </div>
