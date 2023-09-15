@@ -1222,7 +1222,7 @@ def alsa_floor(request):
 
 def new_pergo(request):
     href = 'https://pergo.su'
-    soup = BeautifulSoup(get(href + '/collection/goteborg-pro-8mm').text, 'html.parser')
+    soup = BeautifulSoup(get(href + '/collection/malmo-pro-8mm').text, 'html.parser')
     items = soup.find_all('div', class_='product-preview__area-title')
     for item in items:
         print(href+item.find('a')['href'])
@@ -1253,7 +1253,7 @@ def new_pergo(request):
             subcategory=SubCategory.objects.get_or_create(title='Ламинат')[0],
             slug=href1.split('/')[2],
             articul=href1.split('/')[2],
-            collection='Göteborg pro'
+            collection='Malmö pro'
         )
         item.save()
 
