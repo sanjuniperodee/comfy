@@ -1219,6 +1219,46 @@ def alsa_floor(request):
 #             print(item.image.url)
 #             item.image = '123123'
 
+
+def new_pergo(request):
+    href = 'https://pergo.su'
+    soup = BeautifulSoup(get(href + '/collection/wide-long-plank-95mm').text, 'html.parser')
+    items = soup.find_all('div', class_='product-preview__area-title')
+    for item in items:
+        print(href+item.find('a')['href'])
+        href1=item.find('a')['href']
+        page = BeautifulSoup(get(href+href1).text, 'html.parser')
+        title = page.find('h1', class_='product__title heading').text.strip()
+        print(title)
+        properties = page.find('div', class_='product__variants').text.strip().split('/')
+        thickness = properties[0]
+        width = properties[2]
+        length = properties[3]
+        faska = properties[4]
+        description = page.find('div', class_='product-description static-text').text.strip()
+        print(thickness)
+        print(width)
+        print(length)
+        print(faska)
+        print(description)
+        item = Item(
+            title=title,
+            thickness=thickness,
+            width=width,
+            length=length,
+            faska=faska,
+            description1=description,
+            brand=Brand.objects.get_or_create(title='Pergo')[0],
+            category=Category.objects.filter(title='Ламинат')[0],
+            subcategory=SubCategory.objects.get_or_create(title='Ламинат')[0],
+            slug=href1.split('/')[2],
+            articul=href1.split('/')[2],
+            collection='Wide Long Plank'
+        )
+        item.save()
+        break
+
+
 def pergo(request):
     href = 'https://vmasterskoy.kz'
     soup = BeautifulSoup(get(href + '/search/?value=pergo').text, 'html.parser')
