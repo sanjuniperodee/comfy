@@ -1256,7 +1256,6 @@ def new_pergo(request):
             collection='Wide Long Plank'
         )
         item.save()
-        break
 
 
 def pergo(request):
