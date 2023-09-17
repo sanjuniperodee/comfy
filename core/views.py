@@ -1302,11 +1302,14 @@ def kinklight(request):
                 subcategory=SubCategory.objects.get_or_create(title='Подвесные люстры')[0],
                 description1=description1
             )
-            img = page.find('div', class_='product-gallery').find('img')['src']
-            response = requests.get('https://kinklight.ru' + img)
-            response.raise_for_status()
-            item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
-            item1.save()
+            try:
+                img = page.find('div', class_='product-gallery').find('img')['src']
+                response = requests.get('https://kinklight.ru' + img)
+                response.raise_for_status()
+                item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+                item1.save()
+            except:
+                continue
 
 def pergo(request):
     href = 'https://vmasterskoy.kz'
