@@ -1258,6 +1258,56 @@ def new_pergo(request):
         item.save()
 
 
+def isonix(request):
+    with open('core\\content.txt', 'r', encoding='utf-8') as file:
+        content = file.read()
+    page = BeautifulSoup(content, 'html.parser')
+    items = page.find_all('div', class_='catalog__item-popup')
+    for item in items:
+        print(len(item.find_all('div', class_='cart__pane')))
+    print(len(items))
+
+def kinklight(request):
+    href = 'https://kinklight.ru/'
+    for i in range(1,5):
+        soup = BeautifulSoup(get(href+'novinki.html?page=' + str(i)).text, 'html.parser')
+        items = soup.find_all('div', class_='card')
+        for item in items:
+            link = item.find('p', class_='card-name').find('a')['href']
+            page = BeautifulSoup(get(href+link).text, 'html.parser')
+            title = page.find('h1', class_='product-name').text.strip()
+            params = page.find_all('div', class_='char_row flex-s')
+            description1 = width = height = length = ""
+            for param in params:
+                key = param.find_all('span')[0].text
+                value = param.find_all('span')[1].text
+                print(key + ": " + value)
+                if key == 'Высота (см)':
+                    height = value
+                elif key == 'Ширина (см)':
+                    width = value
+                elif key == 'Длина (см)':
+                    length = value
+                else:
+                    description1 += key + ": " + value + "\n"
+            item1 = Item(
+                title=title,
+                height=height,
+                width=width,
+                length=length,
+                slug=link.replace('.', '').replace('/', ''),
+                articul=link.replace('.', '').replace('/', ''),
+                brand=Brand.objects.get_or_create(title='Kink Light')[0],
+                category=Category.objects.filter(title='Люстры')[0],
+                subcategory=SubCategory.objects.get_or_create(title='Подвесные люстры')[0],
+                description1=description1
+            )
+            img = page.find('div', class_='product-gallery').find('img')['src']
+            response = requests.get('https://kinklight.ru' + img)
+            response.raise_for_status()
+            item1.image.save(f"{title}.jpg", ContentFile(response.content), save=True)
+            item1.save()
+
 def pergo(request):
     href = 'https://vmasterskoy.kz'
     soup = BeautifulSoup(get(href + '/search/?value=pergo').text, 'html.parser')

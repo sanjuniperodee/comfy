@@ -32,5 +32,7 @@ urlpatterns = [
     path('dogal', dogal, name='dogal'),
     path('firm', firm, name='firm'),
     path('slug', slug, name='slug'),
-    path('new_pergo', new_pergo, name='new_pergo')
+    path('new_pergo', new_pergo, name='new_pergo'),
+    path('isonix', isonix, name='isonix'),
+    path('kinklight', kinklight, name='kinklight')
 ]
